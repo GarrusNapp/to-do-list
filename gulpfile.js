@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass");
 var sourcemaps = require("gulp-sourcemaps");
-
+var prefix = require('gulp-autoprefixer');
 
 
 gulp.task("sass", function () {
@@ -11,6 +11,7 @@ gulp.task("sass", function () {
         .on('error',function(e){
             console.error("gulpError", e)
         })
+        .pipe(prefix('last 2 versions'))
         .pipe (sourcemaps.write())
         .pipe (gulp.dest("css/."))
 });
