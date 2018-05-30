@@ -17,3 +17,4 @@ A todo list project for coders' lab bootcamp
 * [MRoszakPL](https://github.com/MRoszakPL)
 * [aleksfilipiak](https://github.com/aleksfilipiak)
 * [msawastian](https://github.com/msawastian)
+* [tomasz-cze](https://github.com/tomasz-cze)
