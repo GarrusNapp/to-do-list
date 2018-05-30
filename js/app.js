@@ -1,3 +1,6 @@
 /* We write whole logic of project here */
 
-console.log("I'm working");
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("I'm working");
+});
