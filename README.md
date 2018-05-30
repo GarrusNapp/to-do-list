@@ -5,3 +5,4 @@ A todo list project for coders' lab bootcamp
 * [Garrus](https://github.com/GarrusNapp)
 * [MRoszakPL](https://github.com/MRoszakPL)
 * [aleksfilipiak](https://github.com/aleksfilipiak)
+* [msawastian](https://github.com/msawastian)
