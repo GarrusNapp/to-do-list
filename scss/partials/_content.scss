@@ -26,6 +26,11 @@ ul {
       }
     }
   }
+  .taskContent > div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
   .actionButtons {
     button {
       padding: 5px;
