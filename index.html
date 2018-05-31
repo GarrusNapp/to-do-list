@@ -17,33 +17,42 @@
     <h1>to-do-list</h1>
   </header>
   <main>
-    <section>
+    <section class="controlBar">
 
-      <div class="filters">
-        <label> Filter by date
-          <select class="filter" id="dateFilter">
-            <option value="all" selected>Off</option>
-            <option value="fromClosest">From closest</option>
-            <option value="fromFurthest">From furthest</option>
-          </select>
-        </label>
-        <label> Filter by priority
-          <select class="filter" id="priorityFilter">
-            <option value="all" selected>Off</option>
-            <option value="fromLowest">From least important</option>
-            <option value="fromHighest">From most important</option>
-          </select>
-        </label>
-        <label> Filter by state
-          <select class="filter" id="stateFilter">
-            <option value="all" selected>Off</option>
-            <option value="todo">To do</option>
-            <option value="done">Done</option>
-          </select>
-        </label>
+
+      <div class="addTaskButton" id="addTask">
+        <i class="fa fa-plus fa-2x"></i>
       </div>
 
-      <button id="addTask">Add Task</button>
+      <div class="toggleFilters">
+        <i class="fa fa-filter fa-2x"></i>
+      </div>
+
+      <div class="filters invisible">
+        <h3>Filter</h3>
+        <div>
+          <p>By date</p>
+          <div class="filterButtons">
+            <i class="fa fa-arrow-alt-circle-up"></i>
+            <i class="fa fa-arrow-alt-circle-down"></i>
+          </div>
+        </div>
+        <div>
+          <p>By priority</p>
+          <div class="filterButtons">
+            <i class="fa fa-arrow-alt-circle-up"></i>
+            <i class="fa fa-arrow-alt-circle-down"></i>
+          </div>
+        </div>
+        <div>
+          <p>By state</p>
+          <div class="filterButtons">
+            <i class="fa fa-check-circle"></i>
+            <i class="fa fa-times-circle"></i>
+          </div>
+        </div>
+      </div>
+
 
     </section>
 
@@ -80,27 +89,66 @@
         <li class="task">
 
           <div class="taskContent">
-            <p class="name">Zrobić zakupy</p>
-            <p class="priority">Priority: <span>5</span></p>
-            <p class="deadline">Deadline: <span>20.06.2018</span></p>
+            <div>
+              <p class="name">Zrobić zakupy</p>
+              <p class="priority"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></p>
+              <p class="deadline"><span>20.06.2018</span></p>
+            </div>
+
             <p class="description">Description: <span>Kupić proszek i wode</span></p>
           </div>
 
           <div class="actionButtons">
             <button class="setDoneButton">Done</button>
             <button class="deleteButton">Delete</button>
+          </div>
+        </li>
+        <li class="task">
+
+          <div class="taskContent">
+            <div>
+              <p class="name">Zrobić zakupy</p>
+              <p class="priority"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></p>
+              <p class="deadline"><span>20.06.2018</span></p>
+            </div>
+            <p class="description">Description: <span>Kupić proszek i wode</span></p>
+          </div>
+
+          <div class="actionButtons">
+            <button class="setDoneButton">Done</button>
+
             <button class="editButton">Edit</button>
           </div>
 
+          <div class="taskContent">
+            <div>
+              <p class="name">Zrobić zakupy</p>
+              <p class="priority"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></p>
+              <p class="deadline"><span>20.06.2018</span></p>
+            </div>
+
+
+            <p class="description">Description: <span>Kupić proszek i wode</span></p>
+          </div>
+
+          <div class="actionButtons">
+            <button class="setDoneButton">Done</button>
+
+            <button class="editButton">Edit</button>
+            <button class="deleteButton">Delete</button>
+          </div>
         </li>
 
         <!--Wykonane zadanie -->
         <li class="task done">
 
           <div class="taskContent">
-            <p class="name">Napisać kod</p>
-            <p class="priority">Priority: <span>3</span></p>
-            <p class="deadline">Deadline: <span>4.06.2018</span></p>
+            <div>
+              <p class="name">Napisać kody</p>
+              <p class="priority"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></p>
+              <p class="deadline"><span>4.06.2018</span></p>
+            </div>
+
             <p class="description">Description: <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos facere illo maiores nihil sit.
                             Consectetur debitis deserunt dignissimos, ipsum iure nemo nesciunt quisquam quod soluta voluptatum. Assumenda dolores necessitatibus sit?</span></p>
           </div>
