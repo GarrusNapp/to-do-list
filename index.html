@@ -1,119 +1,123 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ToDo List</title>
-    <!-- CSS Normalization -->
-    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
-     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <!-- Our JS code -->
-    <script src="js/app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To Do List</title>
+  <!-- CSS Normalization -->
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!-- Our JS code -->
+  <script src="js/app.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>to-do-list</h1>
-    </header>
-    <main>
-        <section>
+  <header>
+    <h1>to-do-list</h1>
+  </header>
+  <main>
+    <section>
 
-            <div class="filters">
-                <label> Filtruj po datach
-                    <select class="filter" id="dateFilter">
-                        <option value="all" selected>Wyłączony</option>
-                        <option value="fromClosest">Od najbliższych</option>
-                        <option value="fromFurthest">Od najdalszych</option>
-                    </select>
-                </label>
-                <label> Filtruj po priorytetach
-                    <select class="filter" id="priorityFilter">
-                        <option value="all" selected>Wyłączony</option>
-                        <option value="fromLowest">Od najmniej ważnych</option>
-                        <option value="fromHighest">Od najważniejszych</option>
-                    </select>
-                </label>
-                <label> Filtr stanu zadania
-                    <select class="filter" id="stateFilter">
-                        <option value="all" selected>Wszystkie</option>
-                        <option value="todo">Do zrobienia</option>
-                        <option value="done">Zrobione</option>
-                    </select>
-                </label>
-            </div>
+      <div class="filters">
+        <label> Filter by date
+          <select class="filter" id="dateFilter">
+            <option value="all" selected>Off</option>
+            <option value="fromClosest">From closest</option>
+            <option value="fromFurthest">From furthest</option>
+          </select>
+        </label>
+        <label> Filter by priority
+          <select class="filter" id="priorityFilter">
+            <option value="all" selected>Off</option>
+            <option value="fromLowest">From least important</option>
+            <option value="fromHighest">From most important</option>
+          </select>
+        </label>
+        <label> Filter by state
+          <select class="filter" id="stateFilter">
+            <option value="all" selected>Off</option>
+            <option value="todo">To do</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+      </div>
 
-            <button id="addTask">Dodaj zadanie</button>
+      <button id="addTask">Add Task</button>
 
-        </section>
+    </section>
 
-        <section id="list">
-            <!--Lista zadań -->
-            <ul>
-                <!--createTask powinna pojawiać się po wciśnięciu buttona -->
-                <li class="createTask invisible">
-                    <form>
-                        <input  id="taskName" type="text" placeholder="Wpisz nazwe zadania">
+    <section id="list">
+      <!--Lista zadań -->
+      <ul>
+        <!--createTask powinna pojawiać się po wciśnięciu buttona -->
+        <li class="createTask invisible">
+          <form>
+            <input id="taskName" type="text" placeholder="Add task name">
 
-                        <label> Wybierz priorytet
-                            <select id="setPriority">
-                                <option value="1" >*</option>
-                                <option value="2">**</option>
-                                <option value="3">***</option>
-                                <option value="4">****</option>
-                                <option value="5" selected>*****</option>
-                            </select>
-                        </label>
+            <label> Set priority
+              <select id="setPriority">
+                <option value="1">*</option>
+                <option value="2">**</option>
+                <option value="3">***</option>
+                <option value="4">****</option>
+                <option value="5" selected>*****</option>
+              </select>
+            </label>
 
-                        <label> Podaj termin zadania
-                            <input id="taskDeadline" type="date">
-                        </label>
+            <label> Set task deadline
+              <input id="taskDeadline" type="date">
+            </label>
 
-                       <textarea id="taskDescription" placeholder="Dodaj opis do zadania"></textarea>
+            <textarea id="taskDescription" placeholder="Add task description"></textarea>
 
-                        <button id="confirmButton">Zatwierdź</button>
+            <button id="confirmButton">Confirm</button>
 
-                    </form>
-                </li>
+          </form>
+        </li>
 
-                <!--Normalne zadanie -->
-                <li class="task">
+        <!--Normalne zadanie -->
+        <li class="task">
 
-                    <div class="taskContent">
-                        <p class="name">Zrobić zakupy</p>
-                        <p class="priority">Priorytet: <span>5</span></p>
-                        <p class="deadine">Deadline:   <span>20.06.2018</span></p>
-                        <p class="description">Opis:   <span>Kupić proszek i wode</span></p>
-                    </div>
+          <div class="taskContent">
+            <p class="name">Zrobić zakupy</p>
+            <p class="priority">Priority: <span>5</span></p>
+            <p class="deadline">Deadline: <span>20.06.2018</span></p>
+            <p class="description">Decription: <span>Kupić proszek i wode</span></p>
+          </div>
 
-                    <div class="actionButtons">
-                        <button class="setDoneButton">Zrobione</button>
-                        <button class="deleteButton">Usuń zadanie</button>
-                        <button class="editButton">Zmodyfikuj zadanie</button>
-                    </div>
+          <div class="actionButtons">
+            <button class="setDoneButton">Done</button>
+            <button class="deleteButton">Delete</button>
+            <button class="editButton">Edit</button>
+          </div>
 
-                </li>
+        </li>
 
-                <!--Wykonane zadanie -->
-                <li class="task done">
+        <!--Wykonane zadanie -->
+        <li class="task done">
 
-                    <div class="taskContent">
-                        <p class="name">Napisać kod</p>
-                        <p class="priority">Priorytet: <span>3</span></p>
-                        <p class="deadine">Deadline:   <span>4.06.2018</span></p>
-                        <p class="description">Opis:   <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos facere illo maiores nihil sit.
+          <div class="taskContent">
+            <p class="name">Napisać kod</p>
+            <p class="priority">Priority: <span>3</span></p>
+            <p class="deadline">Deadline: <span>4.06.2018</span></p>
+            <p class="description">Description: <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos facere illo maiores nihil sit.
                             Consectetur debitis deserunt dignissimos, ipsum iure nemo nesciunt quisquam quod soluta voluptatum. Assumenda dolores necessitatibus sit?</span></p>
-                    </div>
+          </div>
 
-                    <!-- Można zmienić buttony na divy z backgroundem -->
-                    <div class="actionButtons">
-                        <button class="setDoneButton">Przywróć</button> <!-- Nie wiem czy to najlepsze sformułowanie. Chodzi o cofnięcie statusu wykonanego zadania-->
-                        <button class="deleteButton">Usuń zadanie</button>
-                        <button class="editButton invisible">Zmodyfikuj zadanie</button>
-                    </div>
+          <!-- Można zmienić buttony na divy z backgroundem -->
+          <div class="actionButtons">
+            <button class="setDoneButton">Not done</button>
+            <!-- Nie wiem czy to najlepsze sformułowanie. Chodzi o cofnięcie statusu wykonanego zadania-->
+            <button class="deleteButton">Delete</button>
+            <button class="editButton invisible">Edit</button>
+          </div>
 
-                </li>
+        </li>
 
-            </ul>
-        </section>
-    </main>
+      </ul>
+    </section>
+  </main>
 </body>
+
 </html>
