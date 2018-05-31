@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
     ],
-        dateDisplay = document.getElementById('date');
+        dateDisplay = document.querySelector('.date');
 
     dateDisplay.innerText = day + ' ' + monthNames[month] + ' ' + year;
 
@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var taskDeadlineInput = document.getElementById('taskDeadline');
     var taskDescriptionInput = document.getElementById('taskDescription');
     var confirmButton = document.getElementById('confirmButton');
+
+    function setTaskPriority(element) {
+        for (var i = 0; i < setPriorityInput.value; i++) {
+            element.innerHTML += '<i class="fa fa-star"></i>';
+        }
+    }
 
     function addNewTask(event) {
 
@@ -68,18 +74,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //Set values
         name.innerText = nameInput.value;
-
         setTaskPriority(priority);
-
-
         deadline.innerText = "Deadline: " + taskDeadlineInput.value;
         description.innerHTML = 'Description: ' + taskDescriptionInput.value;
 
         //Put everything together
         namePriorityDiv.appendChild(name);
         namePriorityDiv.appendChild(priority);
+        namePriorityDiv.appendChild(deadline);
         taskContent.appendChild(namePriorityDiv);
-        taskContent.appendChild(deadline);
         taskContent.appendChild(description);
         actionButtons.appendChild(setDoneButton);
         actionButtons.appendChild(editButton);
@@ -89,13 +92,5 @@ document.addEventListener('DOMContentLoaded', function () {
         list.appendChild(newTask);
 
     }
-
     confirmButton.addEventListener('click', addNewTask);
-
-    function setTaskPriority(element) {
-        for (var i = 0; i < setPriorityInput.value; i++) {
-            element.innerHTML += '<i class="fa fa-star"></i>';
-        }
-    }
-
 });
