@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
         //Set values
         name.innerText = nameInput.value;
         setTaskPriority(priority);
-        deadline.innerText = "Deadline: " + taskDeadlineInput.value;
-        description.innerHTML = 'Description: ' + taskDescriptionInput.value;
+        deadline.innerText = taskDeadlineInput.value;
+        description.innerHTML = taskDescriptionInput.value;
 
         //Put everything together
         namePriorityDiv.appendChild(name);
