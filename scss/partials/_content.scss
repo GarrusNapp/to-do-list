@@ -1,7 +1,43 @@
-/* Describe main here */
-.przyklad {
-  display: flex;
-  transition: all .5s;
-  user-select: none;
-  background: linear-gradient(to bottom, white, black);
+ul {
+  font-family: 'Lato', sans-serif;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  p {
+    margin: 0;
+  }
+
+  .task {
+    border-bottom: 1px solid $colorHighlight;
+    padding: 10px;
+    line-height: 2;
+    .name {
+      font-weight: bold;
+    }
+    &.done {
+      color: $colorPaleText;
+      background-color: $colorPale;
+      text-decoration: line-through;
+      button {
+        background-color: $colorPale;
+        border: 2px solid $colorPaleText;
+        color: $colorPaleText;
+      }
+    }
+  }
+  .taskContent > div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .actionButtons {
+    button {
+      padding: 5px;
+      background-color: $colorOfBackground;
+      border: 2px solid $colorPrimary;
+      color: $colorPrimary;
+      border-radius: 5px;
+    }
+  }
 }
