@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  console.log(tasks);
+
   //Date implementation
   var date = new Date(),
     day = date.getDate(),
@@ -164,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function() {
     newTask.appendChild(taskContent);
     newTask.appendChild(actionButtons);
     list.appendChild(newTask);
-    console.log('1');
   }
 
   function populateList() {
