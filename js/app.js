@@ -254,25 +254,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
         function markTaskAsDone(event) {
             event.target.parentElement.parentElement.classList.toggle('done');
+
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
+            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
+            var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
+            var taskIndexLocalStorage = listOfTasks.indexOf(correctTaskLocalStorage); //finds the index of the element we search for
+            listOfTasks[taskIndexLocalStorage].done = true;
+            sendData('toDoList', listOfTasks); //pushes changed array to local storage
+
+            function findTask(task) { //defines a search function to be used below
+                return task.id === parseInt(taskID); //searches for a array element with id key of value equal to task ID
+            }
+
+            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (important when array is sorted)
+            var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
+            tasks[taskIndex].done = false; //removes the element from tasks array
         }
 
         function deleteTask(event) {
-            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
-
-            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); //removes visible html task element
-            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
-            listOfTasks.splice(taskID, 1); //removes one element from local storage, starting at the index of task ID
-            sendData('toDoList', listOfTasks); //pushes changed array to local storage
-
             function findTask(task) { //defines a search function to be used below
                 return task.id === parseInt(taskID); //searches for a array alement with id key of value equal to task ID
             }
 
-            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (importand when array is sorted)
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
+
+            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
+            var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
+            var taskIndexLocalStorage = listOfTasks.indexOf(correctTaskLocalStorage); //finds the index of the element we search for
+            listOfTasks.splice(taskIndexLocalStorage, 1); //removes one element from local storage, starting at the index of task ID
+            sendData('toDoList', listOfTasks); //pushes changed array to local storage
+
+            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (important when array is sorted)
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             tasks.splice(taskIndex,1); //removes the element from tasks array
 
-
+            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); //removes visible html task element
         }
 
         for (var doneButton of doneButtons) {
