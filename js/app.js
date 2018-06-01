@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var dateMonth = date.slice(5, 7);
         var dateDay = date.slice(8, 10);
         dateArray.push(dateDay, dateMonth, dateYear);
-        console.log(dateArray.join('.'));
         return dateArray.join('.');
     }
 
