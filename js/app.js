@@ -44,6 +44,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
   dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
 
+  // Date conversion from yyyy-mm-dd to dd-mm-yyyy
+
+    function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
+        var dateArray = [];
+        var dateYear = date.slice(0, 4);
+        var dateMonth = date.slice(5, 7);
+        var dateDay = date.slice(8, 10);
+        dateArray.push(dateDay, dateMonth, dateYear);
+        return dateArray.join('.');
+    }
+
   //Create new tasks
 
   var list = document.querySelector("ul");
@@ -112,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
     priority.innerHTML = Array(obj.priority + 1).join(
       '<i class="fa fa-star"></i>'
     );
-    deadline.innerText = obj.date;
+    deadline.innerText = convertDate(obj.date);
     description.innerHTML = obj.description;
 
     //Put everything together
