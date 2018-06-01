@@ -134,14 +134,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var setDoneButton = document.createElement("button");
     setDoneButton.classList.add("setDoneButton");
+      setDoneButton.classList.add("fas fa-check-square");
     setDoneButton.innerText = "Done";
 
     var editButton = document.createElement("button");
     editButton.classList.add("editButton");
+      editButton.classList.add("fas fa-edit");
     editButton.innerText = "Edit";
 
     var deleteButton = document.createElement("button");
     deleteButton.classList.add("deletebutton");
+      deleteButton.classList.add("fas fa-trash");
     deleteButton.innerText = "Delete";
 
     //Set values
