@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function downloadData(name) {
         return JSON.parse( localStorage.getItem(name) );
     }
+
+    //Remove data with given id
+    function removeData(id) {
+        localStorage.removeItem()
+    }
     // Date conversion from yyyy-mm-dd to dd-mm-yyyy
     function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
         var dateArray = [];
@@ -30,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(!(downloadData('oldUser'))){
             let firstTasks = [
                 {
-                    id: 1,
+                    id: 0,
                     title: "This is exmaple task, try to do new one yourself",
                     date: "2018-11-01",
                     priority: 5,
@@ -38,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     done: false
                 },
                 {
-                    id: 2,
+                    id: 1,
                     title: "This is how task looks like, when u set it done",
                     date: "2017-11-30",
                     priority: 1,
@@ -168,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var taskDescriptionInput = document.getElementById("taskDescription");
 
         var newTask = {
-            id: tasks.length + 1,
+            id: tasks.length,
             title: nameInput.value,
             date: taskDeadlineInput.value,
             priority: setPriorityInput.value,
@@ -185,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //New task
         var newTask = document.createElement("li");
         newTask.classList.add("task");
+        newTask.dataset.id = obj.id;
         if(obj.done){
             newTask.classList.add("done");
         }
@@ -251,7 +257,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function deleteTask(event) {
-            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
+
+            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); //removes visible html task element
+            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
+            listOfTasks.splice(taskID, 1); //removes one element from local storage, starting at the index of task ID
+            sendData('toDoList', listOfTasks); //pushes changed array to local storage
+
+            function findTask(task) { //defines a search function to be used below
+                return task.id === parseInt(taskID); //searches for a array alement with id key of value equal to task ID
+            }
+
+            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (importand when array is sorted)
+            var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
+            tasks.splice(taskIndex,1); //removes the element from tasks array
+
+
         }
 
         for (var doneButton of doneButtons) {
