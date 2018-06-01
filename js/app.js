@@ -122,9 +122,15 @@ document.addEventListener("DOMContentLoaded", function() {
         tasks = items;
     }
 
+    //Functions for add task and filter buttons
 
+    function showForm() {
+      document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+    }
 
-
+    function toggleFilters() {
+      document.getElementsByClassName("filters")[0].classList.toggle("invisible");
+    }
 
 
 
@@ -281,5 +287,10 @@ document.addEventListener("DOMContentLoaded", function() {
     doneButton.addEventListener('click', sortByDone);
     undoneButton.addEventListener('click', sortByUndone);
 
+    var addTaskButton = document.getElementById("addTask");
+    var toggleFiltersButton = document.getElementsByClassName("toggleFilters")[0];
+
+    addTaskButton.addEventListener('click', showForm);
+    toggleFiltersButton.addEventListener('click', toggleFilters);
 
 });
