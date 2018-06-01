@@ -131,8 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementsByClassName("filters")[0].classList.toggle("invisible");
     }
 
-
-
     //Date implementation
     var date = new Date(),
         day = date.getDate(),
@@ -217,13 +215,8 @@ document.addEventListener("DOMContentLoaded", function() {
         setDoneButton.classList.add("fas", "fa-check-square");
         setDoneButton.innerText = "Done";
 
-        var editButton = document.createElement("button");
-        editButton.classList.add("editButton");
-        editButton.classList.add("fas", "fa-edit");
-        editButton.innerText = "Edit";
-
         var deleteButton = document.createElement("button");
-        deleteButton.classList.add("deletebutton");
+        deleteButton.classList.add("deleteButton");
         deleteButton.classList.add("fas", "fa-trash");
         deleteButton.innerText = "Delete";
 
@@ -242,11 +235,32 @@ document.addEventListener("DOMContentLoaded", function() {
         taskContent.appendChild(namePriorityDiv);
         taskContent.appendChild(description);
         actionButtons.appendChild(setDoneButton);
-        actionButtons.appendChild(editButton);
         actionButtons.appendChild(deleteButton);
         newTask.appendChild(taskContent);
         newTask.appendChild(actionButtons);
         list.appendChild(newTask);
+    }
+
+    //Creates lists of all done and delete buttons, then adds event listeners to them. Needs to be called inside populate list to work consistently.
+    function makeButtonsWork() {
+        var doneButtons = document.querySelectorAll('.setDoneButton'),
+            deleteButtons = document.querySelectorAll('.deleteButton');
+
+        function markTaskAsDone(event) {
+            event.target.parentElement.parentElement.classList.toggle('done');
+        }
+
+        function deleteTask(event) {
+            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+        }
+
+        for (var doneButton of doneButtons) {
+            doneButton.addEventListener('click', markTaskAsDone);
+        }
+
+        for (var deleteButton of deleteButtons) {
+            deleteButton.addEventListener('click', deleteTask);
+        }
     }
 
     function populateList() {
@@ -258,6 +272,8 @@ document.addEventListener("DOMContentLoaded", function() {
         tasks.forEach(function (task) {
             createTask(task);
         });
+
+        makeButtonsWork(); //adds eventListeners to all of the buttons within the created tasks.
     }
 
     confirmButton.addEventListener("click", addNewTask);
@@ -289,10 +305,4 @@ document.addEventListener("DOMContentLoaded", function() {
     addTaskButton.addEventListener('click', showForm);
     toggleFiltersButton.addEventListener('click', toggleFilters);
 
-
-    function makeButtonsWork() {
-        var doneButtons = document.querySelectorAll('.setDoneButton'),
-            editButtons = document.querySelectorAll('.editButton'),
-            deleteButtons = document.querySelectorAll('.deleteButton');
-    }
 });
