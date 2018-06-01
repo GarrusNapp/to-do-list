@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
-        })
+        });
         console.log(tasks);
 
         populateList();
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a,b) {
             return  a.priority - b.priority;
-        })
+        });
         console.log(tasks);
 
         populateList();
@@ -77,23 +77,21 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
-        })
+        });
         console.log(tasks);
 
         populateList();
     }
-
 
     function sortFromFurthest() {
         console.log(tasks);
         tasks.sort(function (a, b) {
             return  new Date(b.date) - new Date(a.date);
-        })
+        });
         console.log(tasks);
 
         populateList();
     }
-
 
     function sortByDone(){
         let items = tasks;
@@ -102,12 +100,13 @@ document.addEventListener("DOMContentLoaded", function() {
             if(item.done){
                 doneArray.push(item);
             }
-        })
+        });
 
         tasks = doneArray;
         populateList();
         tasks = items;
     }
+
     function sortByUndone(){
         let items = tasks;
         let undoneArray = [];
@@ -115,18 +114,12 @@ document.addEventListener("DOMContentLoaded", function() {
             if(!item.done){
                 undoneArray.push(item);
             }
-        })
+        });
 
         tasks = undoneArray;
         populateList();
         tasks = items;
     }
-
-
-
-
-
-
 
     //Date implementation
     var date = new Date(),
@@ -253,8 +246,8 @@ document.addEventListener("DOMContentLoaded", function() {
         tasks.forEach(function (task) {
             createTask(task);
         });
-
     }
+
     confirmButton.addEventListener("click", addNewTask);
     populateList();
 
@@ -269,17 +262,20 @@ document.addEventListener("DOMContentLoaded", function() {
     var oldestButton = document.querySelector('.filters>div:nth-of-type(1) .fa-arrow-alt-circle-down');
     var newestButton = document.querySelector('.filters>div:nth-of-type(1) .fa-arrow-alt-circle-up');
 
-
     oldestButton.addEventListener('click', sortFromFurthest);
     newestButton.addEventListener('click', sortFromOldest);
 
-
     var doneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-check-circle');
     var undoneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-times-circle');
-
 
     doneButton.addEventListener('click', sortByDone);
     undoneButton.addEventListener('click', sortByUndone);
 
 
+
+    function makeButtonsWork() {
+        var doneButtons = document.querySelectorAll('.setDoneButton'),
+            editButtons = document.querySelectorAll('.editButton'),
+            deleteButtons = document.querySelectorAll('.deleteButton');
+    }
 });
