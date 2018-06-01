@@ -13,10 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return JSON.parse( localStorage.getItem(name) );
     }
 
-    //Remove data with given id
-    function removeData(id) {
-        localStorage.removeItem()
-    }
     // Date conversion from yyyy-mm-dd to dd-mm-yyyy
     function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
         var dateArray = [];
