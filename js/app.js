@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function() {
   function downloadData(name) {
       return JSON.parse( localStorage.getItem(name) );
   }
+    // Date conversion from yyyy-mm-dd to dd-mm-yyyy
+    function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
+        var dateArray = [];
+        var dateYear = date.slice(0, 4);
+        var dateMonth = date.slice(5, 7);
+        var dateDay = date.slice(8, 10);
+        dateArray.push(dateDay, dateMonth, dateYear);
+        return dateArray.join('.');
+
+    }
 
   tasks = downloadData('toDoList');
 
@@ -61,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
       "November",
       "December"
     ],
-    dateDisplay = document.querySelector(".date");
+  dateDisplay = document.querySelector(".date");
 
   dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
 
@@ -138,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
     priority.innerHTML = Array( parseInt(obj.priority) + 1).join(
       '<i class="fa fa-star"></i>'
     );
-    deadline.innerText = obj.date;
+    deadline.innerText = convertDate(obj.date);
     description.innerHTML = obj.description;
 
     //Put everything together
@@ -159,12 +169,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var listOfTasks = document.querySelectorAll('.task');
     for(var task of listOfTasks){
         task.parentElement.removeChild(task);
-    }
+
+
     tasks.forEach(function(task) {
       createTask(task);
     });
   }
-
   confirmButton.addEventListener("click", addNewTask);
   populateList();
 });
