@@ -44,6 +44,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
   dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
 
+  // Date conversion from yyyy-mm-dd to dd-mm-yyyy
+
+    function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
+        var dateArray = [];
+        var dateYear = date.slice(0, 4);
+        var dateMonth = date.slice(5, 7);
+        var dateDay = date.slice(8, 10);
+        dateArray.push(dateDay, dateMonth, dateYear);
+        console.log(dateArray.join('.'));
+        return dateArray.join('.');
+    }
+
+    convertDate('2018-06-01');
+
   //Create new tasks
 
   var list = document.querySelector("ul");
