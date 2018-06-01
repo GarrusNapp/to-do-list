@@ -1,25 +1,56 @@
 /* We write whole logic of project here */
 
 document.addEventListener("DOMContentLoaded", function() {
-  //Example localStorage data
-  var tasks = [
-    {
-      id: 1,
-      title: "Make app done",
-      date: "2017-11-01",
-      priority: 5,
-      description: "This is a test task",
-      done: false
-    },
-    {
-      id: 2,
-      title: "Test app ",
-      date: "2017-11-30",
-      priority: 1,
-      description: "",
-      done: false
+
+  var tasks = [];
+
+  //Send data with set name and content
+  function sendData(name, content) {
+      localStorage.setItem(name, JSON.stringify( content ) );
+  }
+  //Download data with set name
+  function downloadData(name) {
+      return JSON.parse( localStorage.getItem(name) );
+  }
+    // Date conversion from yyyy-mm-dd to dd-mm-yyyy
+    function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
+        var dateArray = [];
+        var dateYear = date.slice(0, 4);
+        var dateMonth = date.slice(5, 7);
+        var dateDay = date.slice(8, 10);
+        dateArray.push(dateDay, dateMonth, dateYear);
+        return dateArray.join('.');
+
     }
-  ];
+
+  tasks = downloadData('toDoList');
+
+  //If tasks are empty we need to check if the user is new or old and deleted his tasks
+  if(tasks == null){
+    if(!(downloadData('oldUser'))){
+      let firstTasks = [
+          {
+              id: 1,
+              title: "This is exmaple task, try to do new one yourself",
+              date: "2018-11-01",
+              priority: 5,
+              description: "This is a place where description will show up",
+              done: false
+          },
+          {
+              id: 2,
+              title: "This is how task looks like, when u set it done",
+              date: "2017-11-30",
+              priority: 1,
+              description: "There is my description",
+              done: true
+          }
+      ];
+        sendData('oldUser', 1);
+        sendData('toDoList', firstTasks);
+        tasks = downloadData('toDoList');
+    }
+  }
 
   //Date implementation
   var date = new Date(),
@@ -40,20 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
       "November",
       "December"
     ],
-    dateDisplay = document.querySelector(".date");
+  dateDisplay = document.querySelector(".date");
 
   dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
-
-  // Date conversion from yyyy-mm-dd to dd-mm-yyyy
-
-    function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
-        var dateArray = [];
-        var dateYear = date.slice(0, 4);
-        var dateMonth = date.slice(5, 7);
-        var dateDay = date.slice(8, 10);
-        dateArray.push(dateDay, dateMonth, dateYear);
-        return dateArray.join('.');
-    }
 
   //Create new tasks
 
@@ -78,12 +98,17 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     tasks.push(newTask);
+    sendData('toDoList', tasks);
+    populateList();
   }
 
   function createTask(obj) {
     //New task
     var newTask = document.createElement("li");
     newTask.classList.add("task");
+    if(obj.done){
+        newTask.classList.add("done");
+    }
 
     //Task contents
     var taskContent = document.createElement("div");
@@ -120,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Set values
     name.innerText = obj.title;
-    priority.innerHTML = Array(obj.priority + 1).join(
+    priority.innerHTML = Array( parseInt(obj.priority) + 1).join(
       '<i class="fa fa-star"></i>'
     );
     deadline.innerText = convertDate(obj.date);
@@ -141,11 +166,15 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function populateList() {
+    var listOfTasks = document.querySelectorAll('.task');
+    for(var task of listOfTasks){
+        task.parentElement.removeChild(task);
+
+
     tasks.forEach(function(task) {
       createTask(task);
     });
   }
-
   confirmButton.addEventListener("click", addNewTask);
   populateList();
 });
