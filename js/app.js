@@ -1,143 +1,140 @@
 /* We write whole logic of project here */
 
-document.addEventListener("DOMContentLoaded", function () {
-    //Example localStorage data
-    var tasks = [
-        {
-            id: 1,
-            title: "Make app done",
-            date: "2017-11-01",
-            priority: 5,
-            description: "This is a test task",
-            done: false
-        },
-        {
-            id: 2,
-            title: "Test app ",
-            date: "2017-11-30",
-            priority: 1,
-            description: "",
-            done: false
-        }
-    ];
-
-    //Date implementation
-    var date = new Date(),
-        day = date.getDate(),
-        month = date.getMonth(),
-        year = date.getFullYear(),
-        monthNames = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ],
-        dateDisplay = document.querySelector(".date");
-
-    dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
-
-    //Create new tasks
-
-    var list = document.querySelector("ul");
-    var confirmButton = document.getElementById("confirmButton");
-
-    function addNewTask(event) {
-        event.preventDefault();
-
-        var nameInput = document.getElementById("taskName");
-        var setPriorityInput = document.getElementById("setPriority");
-        var taskDeadlineInput = document.getElementById("taskDeadline");
-        var taskDescriptionInput = document.getElementById("taskDescription");
-
-        var newTask = {
-            id: tasks.length + 1,
-            title: nameInput.value,
-            date: taskDeadlineInput.value,
-            priority: setPriorityInput.value,
-            description: taskDescriptionInput.value,
-            done: false
-        };
-
-        tasks.push(newTask);
+document.addEventListener("DOMContentLoaded", function() {
+  //Example localStorage data
+  var tasks = [
+    {
+      id: 1,
+      title: "Make app done",
+      date: "2017-11-01",
+      priority: 5,
+      description: "This is a test task",
+      done: false
+    },
+    {
+      id: 2,
+      title: "Test app ",
+      date: "2017-11-30",
+      priority: 1,
+      description: "",
+      done: false
     }
+  ];
 
-    function createTask(obj) {
-        //New task
-        var newTask = document.createElement("li");
-        newTask.classList.add("task");
+  //Date implementation
+  var date = new Date(),
+    day = date.getDate(),
+    month = date.getMonth(),
+    year = date.getFullYear(),
+    monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    dateDisplay = document.querySelector(".date");
 
-        //Task contents
-        var taskContent = document.createElement("div");
-        taskContent.classList.add("taskContent");
+  dateDisplay.innerText = day + " " + monthNames[month] + " " + year;
 
-        //Task name and priority
-        var namePriorityDiv = document.createElement("div");
-        var name = document.createElement("p");
-        name.classList.add("name");
-        var priority = document.createElement("p");
-        priority.classList.add("priority");
+  //Create new tasks
 
-        //Task deadline and description
-        var deadline = document.createElement("p");
-        deadline.classList.add("deadline");
-        var description = document.createElement("p");
-        description.classList.add("description");
+  var list = document.querySelector("ul");
+  var confirmButton = document.getElementById("confirmButton");
 
-        //Action buttons
-        var actionButtons = document.createElement("div");
-        actionButtons.classList.add("actionButtons");
+  function addNewTask(event) {
+    event.preventDefault();
 
-        var setDoneButton = document.createElement("button");
-        setDoneButton.classList.add("setDoneButton");
-        setDoneButton.classList.add("fas fa-check-square");
-        setDoneButton.innerText = "Done";
+    var nameInput = document.getElementById("taskName");
+    var setPriorityInput = document.getElementById("setPriority");
+    var taskDeadlineInput = document.getElementById("taskDeadline");
+    var taskDescriptionInput = document.getElementById("taskDescription");
 
-        var editButton = document.createElement("button");
-        editButton.classList.add("editButton");
-        editButton.classList.add("fas fa-edit");
-        editButton.innerText = "Edit";
+    var newTask = {
+      id: tasks.length + 1,
+      title: nameInput.value,
+      date: taskDeadlineInput.value,
+      priority: setPriorityInput.value,
+      description: taskDescriptionInput.value,
+      done: false
+    };
 
-        var deleteButton = document.createElement("button");
-        deleteButton.classList.add("deletebutton");
-        deleteButton.classList.add("fas fa-trash")
-        deleteButton.innerText = "Delete";
+    tasks.push(newTask);
+  }
 
-        //Set values
-        name.innerText = obj.title;
-        priority.innerHTML = Array(obj.priority + 1).join(
-            '<i class="fa fa-star"></i>'
-        );
-        deadline.innerText = obj.date;
-        description.innerHTML = obj.description;
+  function createTask(obj) {
+    //New task
+    var newTask = document.createElement("li");
+    newTask.classList.add("task");
 
-        //Put everything together
-        namePriorityDiv.appendChild(name);
-        namePriorityDiv.appendChild(priority);
-        namePriorityDiv.appendChild(deadline);
-        taskContent.appendChild(namePriorityDiv);
-        taskContent.appendChild(description);
-        actionButtons.appendChild(setDoneButton);
-        actionButtons.appendChild(editButton);
-        actionButtons.appendChild(deleteButton);
-        newTask.appendChild(taskContent);
-        newTask.appendChild(actionButtons);
-        list.appendChild(newTask);
-    }
+    //Task contents
+    var taskContent = document.createElement("div");
+    taskContent.classList.add("taskContent");
 
-    function populateList() {
-        tasks.forEach(function (task) {
-            createTask(task);
-        });
-    }
+    //Task name and priority
+    var namePriorityDiv = document.createElement("div");
+    var name = document.createElement("p");
+    name.classList.add("name");
+    var priority = document.createElement("p");
+    priority.classList.add("priority");
 
-    confirmButton.addEventListener("click", addNewTask);
-    populateList();
+    //Task deadline and description
+    var deadline = document.createElement("p");
+    deadline.classList.add("deadline");
+    var description = document.createElement("p");
+    description.classList.add("description");
+
+    //Action buttons
+    var actionButtons = document.createElement("div");
+    actionButtons.classList.add("actionButtons");
+
+    var setDoneButton = document.createElement("button");
+    setDoneButton.classList.add("setDoneButton");
+    setDoneButton.innerText = "Done";
+
+    var editButton = document.createElement("button");
+    editButton.classList.add("editButton");
+    editButton.innerText = "Edit";
+
+    var deleteButton = document.createElement("button");
+    deleteButton.classList.add("deletebutton");
+    deleteButton.innerText = "Delete";
+
+    //Set values
+    name.innerText = obj.title;
+    priority.innerHTML = Array(obj.priority + 1).join(
+      '<i class="fa fa-star"></i>'
+    );
+    deadline.innerText = obj.date;
+    description.innerHTML = obj.description;
+
+    //Put everything together
+    namePriorityDiv.appendChild(name);
+    namePriorityDiv.appendChild(priority);
+    namePriorityDiv.appendChild(deadline);
+    taskContent.appendChild(namePriorityDiv);
+    taskContent.appendChild(description);
+    actionButtons.appendChild(setDoneButton);
+    actionButtons.appendChild(editButton);
+    actionButtons.appendChild(deleteButton);
+    newTask.appendChild(taskContent);
+    newTask.appendChild(actionButtons);
+    list.appendChild(newTask);
+  }
+
+  function populateList() {
+    tasks.forEach(function(task) {
+      createTask(task);
+    });
+  }
+
+  confirmButton.addEventListener("click", addNewTask);
+  populateList();
 });
