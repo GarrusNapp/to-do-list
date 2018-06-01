@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
     priority.innerHTML = Array(obj.priority + 1).join(
       '<i class="fa fa-star"></i>'
     );
-    deadline.innerText = obj.date;
+    deadline.innerText = convertDate(obj.date);
     description.innerHTML = obj.description;
 
     //Put everything together
