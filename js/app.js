@@ -1,25 +1,46 @@
 /* We write whole logic of project here */
 
 document.addEventListener("DOMContentLoaded", function() {
-  //Example localStorage data
-  var tasks = [
-    {
-      id: 1,
-      title: "Make app done",
-      date: "2017-11-01",
-      priority: 5,
-      description: "This is a test task",
-      done: false
-    },
-    {
-      id: 2,
-      title: "Test app ",
-      date: "2017-11-30",
-      priority: 1,
-      description: "",
-      done: false
+
+  var tasks = [];
+
+  //Send data with set name and content
+  function sendData(name, content) {
+      localStorage.setItem(name, JSON.stringify( content ) );
+  }
+  //Download data with set name
+  function downloadData(name) {
+      return JSON.parse( localStorage.getItem(name) );
+  }
+
+  tasks = downloadData('toDoList');
+
+  //If tasks are empty we need to check if the user is new or old and deleted his tasks
+  if(tasks == null){
+    if(!(downloadData('oldUser'))){
+      let firstTasks = [
+          {
+              id: 1,
+              title: "This is exmaple task, try to do new one yourself",
+              date: "2018-11-01",
+              priority: 5,
+              description: "This is a place where description will show up",
+              done: false
+          },
+          {
+              id: 2,
+              title: "This is how task looks like, when u set it done",
+              date: "2017-11-30",
+              priority: 1,
+              description: "There is my description",
+              done: true
+          }
+      ];
+        sendData('oldUser', 1);
+        sendData('toDoList', firstTasks);
+        tasks = downloadData('toDoList');
     }
-  ];
+  }
 
   //Date implementation
   var date = new Date(),
@@ -73,6 +94,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //New task
     var newTask = document.createElement("li");
     newTask.classList.add("task");
+    if(obj.done){
+        newTask.classList.add("done");
+    }
 
     //Task contents
     var taskContent = document.createElement("div");
