@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+
   //Date implementation
   var date = new Date(),
     day = date.getDate(),
@@ -166,14 +167,15 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function populateList() {
-    var listOfTasks = document.querySelectorAll('.task');
-    for(var task of listOfTasks){
-        task.parentElement.removeChild(task);
+      var listOfTasks = document.querySelectorAll('.task');
+      for (var task of listOfTasks) {
+          task.parentElement.removeChild(task);
 
+      }
+          tasks.forEach(function (task) {
+              createTask(task);
+          });
 
-    tasks.forEach(function(task) {
-      createTask(task);
-    });
   }
   confirmButton.addEventListener("click", addNewTask);
   populateList();
