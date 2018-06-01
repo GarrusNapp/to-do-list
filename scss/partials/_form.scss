@@ -11,7 +11,7 @@
   z-index: 4;
   position: absolute;
   padding-top: 5%;
-  #backButton {
+  .backButton {
     width: 3%;
     margin-top: -6%;
     margin-left: 3%;
@@ -30,7 +30,7 @@
     height: 5%;
     text-align: center;
   }
-  #formLabel1 {
+  .formLabel1 {
     display: flex;
     align-items: center;
     margin-top: 2%;
@@ -48,7 +48,7 @@
     }
   }
 
-  #formLabel2 {
+  .formLabel2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +63,7 @@
     text-align: end;
     }
   }
-  #descriptionTask {
+  .descriptionTask {
     font-size: 1rem;
     display: block;
     margin-top: 3%;
@@ -73,7 +73,7 @@
     display: flex;
     font-size: 1rem;
     margin-left: 5%;
-    width: 90%;
+    width: 89%;
     height: 30vh;
     overflow: scroll;
     background-color: #23342d;
@@ -87,9 +87,9 @@
     text-align: center;
     font-size: 1.2rem;
     height: 5%;
-    width: 30%;
+    width: 90%;
     margin-top: 5%;
-    color: lightgray;
+    color: white;
     border-style: hidden;
   }
 

@@ -1,4 +1,4 @@
-gulp sass
+
 <!doctype html>
 <html lang="en">
 
@@ -66,11 +66,11 @@ gulp sass
       <ul>
         <!--createTask powinna pojawiać się po wciśnięciu buttona -->
         <li class="createTask invisible">
-          <form id="form">Creat new task
-              <div id="backButton"></div>
+          <form id="form">Create new task
+              <div class="backButton"></div>
             <input id="taskName" type="text" placeholder="Add task name">
 
-            <label id="formLabel1"> Set priority
+            <label class="formLabel1"> Set priority
               <select id="setPriority">
                 <option value="1">*</option>
                 <option value="2">**</option>
@@ -80,10 +80,10 @@ gulp sass
               </select>
             </label>
 
-            <label id="formLabel2"> Set task deadline
+            <label class="formLabel2"> Set task deadline
               <input id="taskDeadline" type="date">
             </label>
-            <span id="descriptionTask">Description</span>
+            <span class="descriptionTask">Description</span>
 
             <textarea id="taskDescription" placeholder="Add task description"></textarea>
 
