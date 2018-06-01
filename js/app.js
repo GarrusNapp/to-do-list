@@ -55,8 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return dateArray.join('.');
     }
 
-    convertDate('2018-06-01');
-
   //Create new tasks
 
   var list = document.querySelector("ul");
