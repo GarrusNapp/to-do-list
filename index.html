@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -65,10 +66,11 @@
       <ul>
         <!--createTask powinna pojawiać się po wciśnięciu buttona -->
         <li class="createTask invisible">
-          <form>
+          <form id="form">Create new task
+              <div class="backButton"></div>
             <input id="taskName" type="text" placeholder="Add task name">
 
-            <label> Set priority
+            <label class="formLabel1"> Set priority
               <select id="setPriority">
                 <option value="1">*</option>
                 <option value="2">**</option>
@@ -78,9 +80,10 @@
               </select>
             </label>
 
-            <label> Set task deadline
+            <label class="formLabel2"> Set task deadline
               <input id="taskDeadline" type="date">
             </label>
+            <span class="descriptionTask">Description</span>
 
             <textarea id="taskDescription" placeholder="Add task description"></textarea>
 
