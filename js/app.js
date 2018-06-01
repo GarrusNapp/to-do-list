@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     tasks.push(newTask);
+    sendData('toDoList', tasks);
+    populateList();
   }
 
   function createTask(obj) {
@@ -133,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Set values
     name.innerText = obj.title;
-    priority.innerHTML = Array(obj.priority + 1).join(
+    priority.innerHTML = Array( parseInt(obj.priority) + 1).join(
       '<i class="fa fa-star"></i>'
     );
     deadline.innerText = obj.date;
@@ -154,6 +156,10 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function populateList() {
+    var listOfTasks = document.querySelectorAll('.task');
+    for(var task of listOfTasks){
+        task.parentElement.removeChild(task);
+    }
     tasks.forEach(function(task) {
       createTask(task);
     });
