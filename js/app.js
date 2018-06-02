@@ -218,8 +218,9 @@ document.addEventListener("DOMContentLoaded", function() {
             description: taskDescriptionInput.value,
             done: false
         };
+
         nameInput.value = '';
-        setPriorityInput.value = '';
+        setPriorityInput.value = 5;
         taskDeadlineInput.value = '';
         taskDescriptionInput.value = '';
 
@@ -227,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function() {
         tasks.push(newTask);
         sendData('toDoList', tasks);
         populateList();
+
     }
 
     function createTask(obj) {
@@ -342,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             tasks.splice(taskIndex,1); //removes the element from tasks array
 
-            event.target.parentElement.parentElement.classList.add('slideToTop'); // Animation before delete form ul
+            event.target.parentElement.parentElement.classList.add('slideTask'); // Animation before delete form ul
             remove(event)
 
         }
