@@ -26,7 +26,7 @@
 }
 
 .slideToRight{
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     animation: slideToRight;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
@@ -36,7 +36,7 @@
 .slideFromRight{
   visibility: visible;
   height: auto;
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     animation: slideFromRight;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
@@ -46,7 +46,7 @@
 @keyframes slideToTop {
   0% {
     transform: translateY(0%);
-    height: 200px;
+    height: 45vh;
     opacity: 1;
   }
   100%{
@@ -66,7 +66,7 @@
   }
   100%{
     transform: translateY(0%);
-    height: 200px;
+    height: 45vh;
     opacity: 1;
   }
 }

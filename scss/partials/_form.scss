@@ -52,6 +52,7 @@
     width: 100%;
     justify-content: space-around;
     height: 16vh;
+    margin-top: 5vh;
   }
   .taskNameLabel {
     //border: 1px solid white;
@@ -81,7 +82,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     #setPriority {
-      margin-top: 3%;
+      margin-top: 4%;
       height: 100%;
       width: 100%;
       color: #fff;
@@ -111,7 +112,7 @@
 
     height: 100%;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 4%;
     color: #fff;
     background-color: #23342d;
     border: 1px solid #4e9d5e;
@@ -149,7 +150,7 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     color: #fff;
-    margin-top: 4%;
+    margin-top: 3%;
     resize:none;
     &::placeholder{
       color:#fff;
@@ -164,8 +165,8 @@
     background-color: #4e9d5e;
     text-align: center;
     font-size: 1.2rem;
-    height: 5%;
-    width: 90%;
+    height: 8vh;
+    width: 50vh;
     margin-top: 5%;
     color: #fff;
     border-style: hidden;
@@ -206,8 +207,7 @@
       margin-top: 5%;
       border-bottom: 1px solid $colorHighlight;
       color: whitesmoke;
-      &::placeholder{
-        text-align: left;
+      &::placeholder {
         text-align: center;
       }
 
