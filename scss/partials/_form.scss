@@ -9,7 +9,7 @@
   z-index: 4;
   position: absolute;
   padding-top: 5%;
-
+  overflow: hidden;
   .backButton {
     position: absolute;
     top: 3vh;
@@ -88,7 +88,7 @@
     }
   }
 
-  #confirmButton {
+  #confirmButton{
     background-color: #4e9d5e;
     text-align: center;
     font-size: 1.2rem;
@@ -99,14 +99,19 @@
     border-style: hidden;
   }
 
+  #cancelButton{
+    display: none;
+  }
+
   @media (min-width: 1024px) {
     position: static;
-    display: flex;
+    overflow-y: hidden;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     padding: 0;
     border-radius: 10px;
+
     span, div:first-of-type{
       display: none;
 
@@ -186,15 +191,19 @@
         color:white;
       }
     }
-    #confirmButton {
+    #confirmButton, #cancelButton {
       background-color: #4e9d5e;
       text-align: center;
       font-size: 1.2rem;
       margin: 0;
       height: 5vh;
-      width: 30vw;
+      width: 15vw;
       color: white;
       border-style: hidden;
+    }
+    #cancelButton{
+      display: block;
+      background-color: darkgrey;
     }
   }
 }
