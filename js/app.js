@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm() {
-      document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+      document.getElementsByClassName("createTask")[0].classList.toggle("invisible");
     }
     function hideForm() {
         document.getElementsByClassName("createTask")[0].classList.add("invisible");
