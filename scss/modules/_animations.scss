@@ -23,6 +23,27 @@
     animation-fill-mode: forwards;
   }
 }
+
+
+.slideFromTop{
+  animation: slideFromTop;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+
+.slideToRight{
+  animation: slideToRight;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.slideFromRight{
+  animation: slideFromRight;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes slideToTop {
   0% {
     transform: translateY(0%);
@@ -71,5 +92,32 @@
     transform: translateY(0%);
     height: 200px;
     opacity: 1;
+  }
+}
+
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+    height: 0;
+  }
+  100%{
+    transform: translateX(0%);
+    height: 350px;
+    opacity: 1;
+  }
+}
+
+@keyframes slideToRight {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+    height: 350px;
+  }
+  100%{
+    transform: translateX(100%);
+    height: 0;
+    opacity: 0;
   }
 }

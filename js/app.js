@@ -147,7 +147,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function toggleFilters() {
-      document.getElementsByClassName("filters")[0].classList.toggle("invisible");
+
+
+        switch( document.getElementsByClassName("filters")[0].classList[1]){
+            case 'invisible':
+                document.getElementsByClassName("filters")[0].classList.remove("invisible");
+                document.getElementsByClassName("filters")[0].classList.add("slideFromRight");
+
+                break;
+            case 'slideToRight':
+                document.getElementsByClassName("filters")[0].classList.remove("slideToRight");
+                document.getElementsByClassName("filters")[0].classList.add("slideFromRight");
+                break;
+            case 'slideFromRight':
+                document.getElementsByClassName("filters")[0].classList.remove("slideFromRight");
+                document.getElementsByClassName("filters")[0].classList.add("slideToRight");
+                break;
+        }
+
+
     }
 
     //Date implementation
