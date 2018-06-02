@@ -32,8 +32,20 @@
 
   .filters {
     color:$colorPrimary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
     @media (min-width: 768px) {
       width: 80vw;
+    }
+    h3 {
+      letter-spacing: 1px;
+    }
+    p {
+      padding: 0 10px;
+      font-weight: bold;
+      text-align: center;
     }
   }
 
@@ -43,6 +55,7 @@
     @media (min-width: 768px) {
       flex-direction: row;
       align-items: center;
+      align-content: center;
       justify-content: space-between;
       display: flex;
     }
@@ -55,6 +68,7 @@
   }
 
   .toggleFilters{
+    padding: 15px 0;
     @media (min-width: 768px) {
       display: none;
     }
@@ -82,3 +96,4 @@
     }
   }
 }
+
