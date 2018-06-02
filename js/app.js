@@ -8,10 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendData(name, content) {
         localStorage.setItem(name, JSON.stringify( content ) );
     }
+
     //Download data with set name
     function downloadData(name) {
         return JSON.parse( localStorage.getItem(name) );
     }
+
     // Date conversion from yyyy-mm-dd to dd-mm-yyyy
     function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
         var dateArray = [];
@@ -20,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var dateDay = date.slice(8, 10);
         dateArray.push(dateDay, dateMonth, dateYear);
         return dateArray.join('.');
-
     }
 
     tasks = downloadData('toDoList');
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(!(downloadData('oldUser'))){
             let firstTasks = [
                 {
-                    id: 1,
+                    id: 0,
                     title: "This is exmaple task, try to do new one yourself",
                     date: "2018-11-01",
                     priority: 5,
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     done: false
                 },
                 {
-                    id: 2,
+                    id: 1,
                     title: "This is how task looks like, when u set it done",
                     date: "2017-11-30",
                     priority: 1,
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
-        })
+        });
         console.log(tasks);
 
         populateList();
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a,b) {
             return  a.priority - b.priority;
-        })
+        });
         console.log(tasks);
 
         populateList();
@@ -77,23 +78,21 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(tasks);
         tasks.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
-        })
+        });
         console.log(tasks);
 
         populateList();
     }
-
 
     function sortFromFurthest() {
         console.log(tasks);
         tasks.sort(function (a, b) {
             return  new Date(b.date) - new Date(a.date);
-        })
+        });
         console.log(tasks);
 
         populateList();
     }
-
 
     function sortByDone(){
         let items = tasks;
@@ -102,12 +101,13 @@ document.addEventListener("DOMContentLoaded", function() {
             if(item.done){
                 doneArray.push(item);
             }
-        })
+        });
 
         tasks = doneArray;
         populateList();
         tasks = items;
     }
+
     function sortByUndone(){
         let items = tasks;
         let undoneArray = [];
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if(!item.done){
                 undoneArray.push(item);
             }
-        })
+        });
 
         tasks = undoneArray;
         populateList();
@@ -131,8 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function toggleFilters() {
       document.getElementsByClassName("filters")[0].classList.toggle("invisible");
     }
-
-
 
     //Date implementation
     var date = new Date(),
@@ -171,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var taskDescriptionInput = document.getElementById("taskDescription");
 
         var newTask = {
-            id: tasks.length + 1,
+            id: Math.floor(Math.random() * 100000000000000),
             title: nameInput.value,
             date: taskDeadlineInput.value,
             priority: setPriorityInput.value,
@@ -188,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //New task
         var newTask = document.createElement("li");
         newTask.classList.add("task");
+        newTask.dataset.id = obj.id;
         if(obj.done){
             newTask.classList.add("done");
         }
@@ -218,13 +217,8 @@ document.addEventListener("DOMContentLoaded", function() {
         setDoneButton.classList.add("fas", "fa-check-square");
         setDoneButton.innerText = "Done";
 
-        var editButton = document.createElement("button");
-        editButton.classList.add("editButton");
-        editButton.classList.add("fas", "fa-edit");
-        editButton.innerText = "Edit";
-
         var deleteButton = document.createElement("button");
-        deleteButton.classList.add("deletebutton");
+        deleteButton.classList.add("deleteButton");
         deleteButton.classList.add("fas", "fa-trash");
         deleteButton.innerText = "Delete";
 
@@ -243,11 +237,74 @@ document.addEventListener("DOMContentLoaded", function() {
         taskContent.appendChild(namePriorityDiv);
         taskContent.appendChild(description);
         actionButtons.appendChild(setDoneButton);
-        actionButtons.appendChild(editButton);
         actionButtons.appendChild(deleteButton);
         newTask.appendChild(taskContent);
         newTask.appendChild(actionButtons);
         list.appendChild(newTask);
+    }
+
+    //Creates lists of all done and delete buttons, then adds event listeners to them. Needs to be called inside populate list to work consistently.
+    function makeButtonsWork() {
+
+
+        var doneButtons = document.querySelectorAll('.setDoneButton'),
+            deleteButtons = document.querySelectorAll('.deleteButton');
+
+        function markTaskAsDone(event) {
+            event.target.parentElement.parentElement.classList.toggle('done');
+
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
+            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
+            var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
+            var taskIndexLocalStorage = listOfTasks.indexOf(correctTaskLocalStorage); //finds the index of the element we search for
+            if (listOfTasks[taskIndexLocalStorage].done === true) { //toggles done boolean in localstorage
+                listOfTasks[taskIndexLocalStorage].done = false;
+            } else if (listOfTasks[taskIndexLocalStorage].done === false) {
+                listOfTasks[taskIndexLocalStorage].done = true;
+            }
+            sendData('toDoList', listOfTasks); //pushes changed array to local storage
+
+            function findTask(task) { //defines a search function to be used below
+                return task.id === parseInt(taskID); //searches for a array element with id key of value equal to task ID - przepisac na for
+            }
+
+            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (important when array is sorted)
+            var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
+            if (tasks[taskIndex].done === false) { //toggles done boolean in tasks array
+                tasks[taskIndex].done = true;
+            } else if (tasks[taskIndex].done === false) {
+                tasks[taskIndex].done = true;
+            }
+        }
+
+        function deleteTask(event) {
+
+            function findTask(task) { //defines a search function to be used below
+                return task.id === parseInt(taskID); //searches for a array alement with id key of value equal to task ID
+            }
+
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element - move id to button
+
+            var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
+            var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
+            var taskIndexLocalStorage = listOfTasks.indexOf(correctTaskLocalStorage); //finds the index of the element we search for
+            listOfTasks.splice(taskIndexLocalStorage, 1); //removes one element from local storage, starting at the index of task ID
+            sendData('toDoList', listOfTasks); //pushes changed array to local storage
+
+            var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (important when array is sorted)
+            var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
+            tasks.splice(taskIndex,1); //removes the element from tasks array
+
+            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); //removes visible html task element
+        }
+
+        for (var doneButton of doneButtons) {
+            doneButton.addEventListener('click', markTaskAsDone);
+        }
+
+        for (var deleteButton of deleteButtons) {
+            deleteButton.addEventListener('click', deleteTask);
+        }
     }
 
     function populateList() {
@@ -260,7 +317,9 @@ document.addEventListener("DOMContentLoaded", function() {
             createTask(task);
         });
 
+        makeButtonsWork(); //adds eventListeners to all of the buttons within the created tasks.
     }
+
     confirmButton.addEventListener("click", addNewTask);
     populateList();
 
@@ -275,14 +334,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var oldestButton = document.querySelector('.filters>div:nth-of-type(1) .fa-arrow-alt-circle-down');
     var newestButton = document.querySelector('.filters>div:nth-of-type(1) .fa-arrow-alt-circle-up');
 
-
     oldestButton.addEventListener('click', sortFromFurthest);
     newestButton.addEventListener('click', sortFromOldest);
 
-
     var doneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-check-circle');
     var undoneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-times-circle');
-
 
     doneButton.addEventListener('click', sortByDone);
     undoneButton.addEventListener('click', sortByUndone);
