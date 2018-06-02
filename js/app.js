@@ -128,8 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("jestem");
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
-            case 'invisible':
-                document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+            case 'invisibleForm':
+                document.getElementsByClassName("createTask")[0].classList.remove("invisibleForm");
                 document.getElementsByClassName("createTask")[0].classList.add("slideFromTop");
 
                 break;
@@ -158,8 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         switch( document.getElementsByClassName("filters")[0].classList[1]){
-            case 'invisible':
-                document.getElementsByClassName("filters")[0].classList.remove("invisible");
+            case 'invisibleFilters':
+                document.getElementsByClassName("filters")[0].classList.remove("invisibleFilters");
                 document.getElementsByClassName("filters")[0].classList.add("slideFromRight");
                 break;
             case 'slideToRight':

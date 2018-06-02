@@ -22,12 +22,18 @@ main{
   flex-direction: column;
 }
 
-.invisible{
+.invisibleFilters{
   @media (max-width: 768px) {
     display: none;
     visibility: hidden;
     height: 0;
   }
+}
+
+.invisibleForm{
+    display: none;
+    visibility: hidden;
+    height: 0;
 }
 
 
