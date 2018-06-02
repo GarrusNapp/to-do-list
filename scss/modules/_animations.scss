@@ -1,0 +1,40 @@
+.makeInvisible{
+  animation: disappear;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+
+.makeVisible{
+  animation: slowShow;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes disappear {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes slowShow {
+  0%{
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  50%{
+    opacity: 1;
+    width: 0;
+    height: 400px;
+  }
+  100%{
+    opacity: 1;
+    width: 20vw;
+    max-height: 400px;
+  }
+}

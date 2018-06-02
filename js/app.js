@@ -8,15 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendData(name, content) {
         localStorage.setItem(name, JSON.stringify( content ) );
     }
+
     //Download data with set name
     function downloadData(name) {
         return JSON.parse( localStorage.getItem(name) );
     }
 
-    //Remove data with given id
-    function removeData(id) {
-        localStorage.removeItem()
-    }
     // Date conversion from yyyy-mm-dd to dd-mm-yyyy
     function convertDate(date) { //input needs to be a string (not a problem considering html date input returns a sting)
         var dateArray = [];
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var dateDay = date.slice(8, 10);
         dateArray.push(dateDay, dateMonth, dateYear);
         return dateArray.join('.');
-
     }
 
     tasks = downloadData('toDoList');
@@ -129,7 +125,10 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm() {
-      document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+      document.getElementsByClassName("createTask")[0].classList.toggle("invisible");
+    }
+    function hideForm() {
+        document.getElementsByClassName("createTask")[0].classList.add("invisible");
     }
 
     function toggleFilters() {
@@ -173,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var taskDescriptionInput = document.getElementById("taskDescription");
 
         var newTask = {
-            id: tasks.length,
+            id: Math.floor(Math.random() * 100000000000000),
             title: nameInput.value,
             date: taskDeadlineInput.value,
             priority: setPriorityInput.value,
@@ -249,6 +248,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Creates lists of all done and delete buttons, then adds event listeners to them. Needs to be called inside populate list to work consistently.
     function makeButtonsWork() {
+
+
         var doneButtons = document.querySelectorAll('.setDoneButton'),
             deleteButtons = document.querySelectorAll('.deleteButton');
 
@@ -259,24 +260,33 @@ document.addEventListener("DOMContentLoaded", function() {
             var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
             var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
             var taskIndexLocalStorage = listOfTasks.indexOf(correctTaskLocalStorage); //finds the index of the element we search for
-            listOfTasks[taskIndexLocalStorage].done = true;
+            if (listOfTasks[taskIndexLocalStorage].done === true) { //toggles done boolean in localstorage
+                listOfTasks[taskIndexLocalStorage].done = false;
+            } else if (listOfTasks[taskIndexLocalStorage].done === false) {
+                listOfTasks[taskIndexLocalStorage].done = true;
+            }
             sendData('toDoList', listOfTasks); //pushes changed array to local storage
 
             function findTask(task) { //defines a search function to be used below
-                return task.id === parseInt(taskID); //searches for a array element with id key of value equal to task ID
+                return task.id === parseInt(taskID); //searches for a array element with id key of value equal to task ID - przepisac na for
             }
 
             var correctTask = tasks.find(findTask); //finds the task in tasks array with correct id (important when array is sorted)
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
-            tasks[taskIndex].done = false; //removes the element from tasks array
+            if (tasks[taskIndex].done === false) { //toggles done boolean in tasks array
+                tasks[taskIndex].done = true;
+            } else if (tasks[taskIndex].done === false) {
+                tasks[taskIndex].done = true;
+            }
         }
 
         function deleteTask(event) {
+
             function findTask(task) { //defines a search function to be used below
                 return task.id === parseInt(taskID); //searches for a array alement with id key of value equal to task ID
             }
 
-            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element
+            var taskID = event.target.parentElement.parentElement.dataset.id; //gets task id from html element - move id to button
 
             var listOfTasks = downloadData('toDoList'); //gets entire local storage as array
             var correctTaskLocalStorage = listOfTasks.find(findTask); //finds the task in tasks array with correct id (important when elements aren't removed from local storage in order
@@ -342,4 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
     addTaskButton.addEventListener('click', showForm);
     toggleFiltersButton.addEventListener('click', toggleFilters);
 
+    var backButton = document.querySelector('.backButton');
+    console.log(backButton);
+    backButton.addEventListener('click', hideForm);
 });

@@ -1,41 +1,75 @@
 /* Describe main here */
 .controlBar {
+
   font-family: "Lato", sans-serif;
   position: fixed;
   bottom: 0;
   right: 0;
   border-radius: 25px;
   padding: 20px 5px;
-
+  background-color: black;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  @media (min-width: 768px) {
+      width: 100%;
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      border-radius: 0;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 2rem;
+    padding: 10px;
+    width: 80%;
+    flex-wrap: nowrap;
+    border-radius: 25px;
+  }
   h3 {
     margin: 0;
   }
 
   .filters {
-    background-color: $colorOfBackground;
+    color:$colorPrimary;
+    @media (min-width: 768px) {
+      width: 80vw;
+    }
   }
 
   .filters,
   .filters > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+    }
   }
 
   .filters .filterButtons i {
-    font-size: 1.5rem;
+    font-size: 3rem;
+    color: $colorPrimary;
+
   }
 
+  .toggleFilters{
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .addTaskButton{
+    @media (min-width: 1024px) {
+      width: 150px;
+      text-align: center;
+    }
+  }
   .toggleFilters,
   .addTaskButton {
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
     i {
       text-align: center;
       width: 50px;
