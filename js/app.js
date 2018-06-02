@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
             case 'invisibleForm':
                 document.getElementsByClassName("createTask")[0].classList.remove("invisibleForm");
                 document.getElementsByClassName("createTask")[0].classList.add("slideFromTop");
-
                 break;
             case 'slideToTop':
                 document.getElementsByClassName("createTask")[0].classList.remove("slideToTop");
@@ -219,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description: taskDescriptionInput.value,
             done: false
         };
-        showForm(event);
+        showForm(event); //animacja
         tasks.push(newTask);
         sendData('toDoList', tasks);
         populateList();
@@ -356,8 +355,8 @@ document.addEventListener("DOMContentLoaded", function() {
         var listOfTasks = document.querySelectorAll('.task');
         for (var task of listOfTasks) {
             task.parentElement.removeChild(task);
-
         }
+
         tasks.forEach(function (task) {
             createTask(task);
         });
