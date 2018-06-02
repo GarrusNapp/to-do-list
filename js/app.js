@@ -218,6 +218,11 @@ document.addEventListener("DOMContentLoaded", function() {
             description: taskDescriptionInput.value,
             done: false
         };
+        nameInput.value = '';
+        setPriorityInput.value = '';
+        taskDeadlineInput.value = '';
+        taskDescriptionInput.value = '';
+
         showForm(event); //animacja
         tasks.push(newTask);
         sendData('toDoList', tasks);
