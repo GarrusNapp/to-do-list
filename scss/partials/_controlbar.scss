@@ -15,7 +15,7 @@
       width: 100%;
       position: static;
       flex-direction: row;
-      flex-wrap: wrap;
+      //flex-wrap: wrap;
       justify-content: space-between;
       border-radius: 0;
   }
@@ -37,10 +37,12 @@
     align-items: center;
     width: 110px;
     @media (min-width: 768px) {
-      width: 80vw;
+      width: 85vw;
     }
     h3 {
       letter-spacing: 1px;
+      display: block;
+      margin-right: auto;
     }
     p {
       padding: 0 10px;
@@ -53,11 +55,15 @@
   .filters > div {
 
     @media (min-width: 768px) {
+      display: flex;
       flex-direction: row;
       align-items: center;
       align-content: center;
-      justify-content: space-between;
-      display: flex;
+      justify-content: center;
+      margin-left: 10px;
+      .stateFilter {
+        margin-right: auto;
+      }
     }
   }
 
@@ -78,6 +84,9 @@
     @media (min-width: 1024px) {
       width: 150px;
       text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
     }
   }
   .toggleFilters,
