@@ -1,5 +1,8 @@
 /* Add function, animations, placeholders, mixins and  general declarations*/
 
+* {
+  box-sizing: border-box;
+}
 body{
   background-color: $colorOfBackground;
   width: 100vw;
@@ -20,9 +23,11 @@ main{
 }
 
 .invisible{
-  display: none;
-  visibility: hidden;
-  height: 0;
+  @media (max-width: 768px) {
+    display: none;
+    visibility: hidden;
+    height: 0;
+  }
 }
 
 
