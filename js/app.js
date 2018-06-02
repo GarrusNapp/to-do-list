@@ -355,4 +355,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var backButton = document.querySelector('.backButton');
     console.log(backButton);
     backButton.addEventListener('click', hideForm);
+
+    var cancelButton = document.getElementById('cancelButton');
+    cancelButton.addEventListener('click', showForm);
 });
