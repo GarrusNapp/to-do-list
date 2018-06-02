@@ -33,15 +33,19 @@
 
 
 .slideToRight{
-  animation: slideToRight;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
+  @media (max-width: 728px) {
+    animation: slideToRight;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
 }
 
 .slideFromRight{
-  animation: slideFromRight;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
+  @media (max-width: 728px) {
+    animation: slideFromRight;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
 }
 
 @keyframes slideToTop {
@@ -57,31 +61,6 @@
   }
 }
 
-@keyframes show {
-  0% {
-    opacity: 0;
-    width: 0;
-    transform: translateX(-100%);
-  }
-  100%{
-    opacity: 1;
-    width: 100%;
-    transform: translateX(0%);
-  }
-}
-@keyframes disappear {
-  0% {
-    opacity: 1;
-    width: 100%;
-    transform: translateX(0%);
-  }
-  100%{
-    opacity: 0;
-    width: 0;
-    transform: translateX(-100%);
-  }
-}
-
 @keyframes slideFromTop {
   0% {
     transform: translateY(-100%);
@@ -92,6 +71,35 @@
     transform: translateY(0%);
     height: 200px;
     opacity: 1;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transform: translateX(-100%);
+  }
+  100%{
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0%);
+  }
+}
+@keyframes disappear {
+  0% {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0%);
+  }
+  100%{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    transform: translateX(-100%);
   }
 }
 
