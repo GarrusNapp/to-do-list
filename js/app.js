@@ -345,6 +345,7 @@ document.addEventListener("DOMContentLoaded", function() {
             tasks.splice(taskIndex,1); //removes the element from tasks array
 
             event.target.parentElement.parentElement.classList.add('slideTask'); // Animation before delete form ul
+
             remove(event)
 
         }
