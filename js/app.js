@@ -161,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
             case 'invisible':
                 document.getElementsByClassName("filters")[0].classList.remove("invisible");
                 document.getElementsByClassName("filters")[0].classList.add("slideFromRight");
-
                 break;
             case 'slideToRight':
                 document.getElementsByClassName("filters")[0].classList.remove("slideToRight");

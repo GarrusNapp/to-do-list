@@ -26,8 +26,7 @@
     <section class="controlBar">
 
 
-        <div class="filters">
-            <!--<div class="filters invisible">-->
+        <div class="filters invisible">
             <h3>Filters</h3>
             <div>
                 <p>By date</p>
@@ -66,34 +65,39 @@
         <ul>
             <!--createTask powinna pojawiać się po wciśnięciu buttona -->
             <li class="createTask invisible">
+                <!--add invisible for prod-->
                 <form id="form">
                     <div class="backButton"></div>
-                    <span>Create new task</span>
-                    <div>
-                        <input id="taskName" type="text" placeholder="Add task name">
-
-                        <label class="formLabel1"> Set priority
-                            <select id="setPriority">
-                                <option value="1">*</option>
-                                <option value="2">**</option>
-                                <option value="3">***</option>
-                                <option value="4">****</option>
-                                <option value="5" selected>*****</option>
-                            </select>
+                    <span class="formTitle">Create new task</span>
+                    <!--<div>-->
+                        <label class="taskNameLabel">Task name
+                            <input id="taskName" type="text" placeholder="Enter task name here">
                         </label>
+                        <div class="inputFormRow">
+                            <label class="formLabel1"> Set priority
+                                <select id="setPriority">
+                                    <option value="1">&#9734</option>
+                                    <option value="2">&#9734&#9734</option>
+                                    <option value="3">&#9734&#9734&#9734</option>
+                                    <option value="4">&#9734&#9734&#9734&#9734</option>
+                                    <option value="5" selected>&#9734&#9734&#9734&#9734&#9734</option>
+                                </select>
+                            </label>
 
-                        <label class="formLabel2 "> Set task deadline
-                            <input id="taskDeadline" type="date">
-                        </label>
-                    </div>
-                    <div>
+                            <label class="formLabel2 "> Set task deadline
+                                <input id="taskDeadline" type="date">
+                            </label>
+                        </div>
+
+                    <!--</div>-->
+                    <!--<div>-->
                         <span class="descriptionTask">Description</span>
 
                         <textarea id="taskDescription" placeholder="Add task description"></textarea>
 
                         <button id="confirmButton">Confirm</button>
                         <button id="cancelButton">Cancel</button>
-                    </div>
+                    <!--</div>-->
                 </form>
             </li>
 

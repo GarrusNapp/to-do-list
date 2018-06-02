@@ -34,6 +34,8 @@
 }
 
 .slideFromRight{
+  visibility: visible;
+  height: auto;
   @media (max-width: 728px) {
     animation: slideFromRight;
     animation-duration: 1.5s;
