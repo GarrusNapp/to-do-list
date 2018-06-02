@@ -1,12 +1,12 @@
 .slideFromTop{
   @media (max-width: 1024px){
     animation: showing;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
   @media (min-width: 1024px){
   animation: slideFromTop;
-  animation-duration: 3s;
+  animation-duration: 1.5s;
   animation-fill-mode: forwards;
   }
 
@@ -15,23 +15,20 @@
 
   @media (max-width: 1024px){
     animation: disappear;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
   @media (min-width: 1024px){
     animation: slideToTop;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
 }
 
-
-
-
 .slideToRight{
   @media (max-width: 728px) {
     animation: slideToRight;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
 }
@@ -39,7 +36,7 @@
 .slideFromRight{
   @media (max-width: 728px) {
     animation: slideFromRight;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
 }

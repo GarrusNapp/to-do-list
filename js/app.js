@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
             description: taskDescriptionInput.value,
             done: false
         };
-
+        showForm(event);
         tasks.push(newTask);
         sendData('toDoList', tasks);
         populateList();
