@@ -1,14 +1,15 @@
 .slideFromTop{
+  @media (max-width: 1024px){
+    animation: showing;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
   @media (min-width: 1024px){
   animation: slideFromTop;
   animation-duration: 3s;
   animation-fill-mode: forwards;
   }
-  @media (max-width: 1024px){
-    animation: show;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-  }
+
 }
 .slideToTop{
 
@@ -25,11 +26,6 @@
 }
 
 
-.slideFromTop{
-  animation: slideFromTop;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
-}
 
 
 .slideToRight{
@@ -74,7 +70,7 @@
   }
 }
 
-@keyframes show {
+@keyframes showing {
   0% {
     opacity: 0;
     width: 0;
