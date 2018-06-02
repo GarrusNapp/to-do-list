@@ -124,12 +124,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Functions for add task and filter buttons
 
-    function showForm() {
-      document.getElementsByClassName("createTask")[0].classList.toggle("invisible");
+    function showForm(e) {
+        console.log("jestem");
+        e.preventDefault();
+        switch( document.getElementsByClassName("createTask")[0].classList[1]){
+            case 'invisible':
+                document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+                document.getElementsByClassName("createTask")[0].classList.add("slideFromTop");
+
+                break;
+            case 'slideToTop':
+                document.getElementsByClassName("createTask")[0].classList.remove("slideToTop");
+                document.getElementsByClassName("createTask")[0].classList.add("slideFromTop");
+                break;
+            case 'slideFromTop':
+                document.getElementsByClassName("createTask")[0].classList.remove("slideFromTop");
+                document.getElementsByClassName("createTask")[0].classList.add("slideToTop");
+                break;
+        }
+
     }
-    function hideForm() {
-        document.getElementsByClassName("createTask")[0].classList.add("invisible");
-    }
+
 
     function toggleFilters() {
       document.getElementsByClassName("filters")[0].classList.toggle("invisible");
@@ -354,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var backButton = document.querySelector('.backButton');
     console.log(backButton);
-    backButton.addEventListener('click', hideForm);
+    backButton.addEventListener('click', showForm);
 
     var cancelButton = document.getElementById('cancelButton');
     cancelButton.addEventListener('click', showForm);
