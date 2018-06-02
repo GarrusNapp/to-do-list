@@ -145,7 +145,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    //Remove element from ul when task is deleted
+    function remove(item){
+        setTimeout(function (){
 
+                console.log(item.target.parentElement.parentElement);
+                item.target.parentElement.parentElement.parentElement.removeChild(item.target.parentElement.parentElement)}
+            ,
+            1500);
+    }
     function toggleFilters() {
 
 
@@ -331,7 +339,9 @@ document.addEventListener("DOMContentLoaded", function() {
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             tasks.splice(taskIndex,1); //removes the element from tasks array
 
-            event.target.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); //removes visible html task element
+            event.target.parentElement.parentElement.classList.add('slideToTop'); // Animation before delete form ul
+            remove(event)
+
         }
 
         for (var doneButton of doneButtons) {
