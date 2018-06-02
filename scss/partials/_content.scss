@@ -9,15 +9,22 @@ ul {
   }
 
   .task {
+    margin-bottom: 5px;
+    margin-top: 5px;
     border-bottom: 1px solid $colorHighlight;
     padding: 10px;
+    border-radius: 10px;
     line-height: 2;
-    .name {
-      font-weight: bold;
+    color: whitesmoke;
+    background-color: #4e9d5e;
+    &:nth-of-type(2n){
+      background-color: #23342d;
+
     }
+
+
     &.done {
       color: $colorPaleText;
-      background-color: $colorPale;
       text-decoration: line-through;
       button {
         background-color: $colorPale;
@@ -30,14 +37,49 @@ ul {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    .name {
+      font-weight: bold;
+      width: 60%;
+    }
+    .priority, .deadline{
+      width: 20%;
+      text-align: right;
+    }
   }
   .actionButtons {
+    display: flex;
+    justify-content: flex-end;
+    @media (min-width: 768px) {
+      justify-content: space-between;
+    }
+    @media (min-width: 1024px) {
+      justify-content: flex-end;
+    }
     button {
       padding: 5px;
       background-color: $colorOfBackground;
-      border: 2px solid $colorPrimary;
-      color: $colorPrimary;
+      border: 2px solid $colorHighlight;
+      color: $colorHighlight;
       border-radius: 5px;
+      width: 30vw;
+      height: 5vh;
+      @media (min-width: 1024px) {
+        width: 10vw;
+        height: 5vh;
+      }
     }
   }
+
 }
+
+#list{
+  width: 100%;
+  @media (min-width: 1024px) {
+    width: 80%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+}
+
