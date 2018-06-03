@@ -3,14 +3,14 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var tasks = [];
-    var error = document.getElementById("error");
+
     var nameInput = document.getElementById("taskName");
     var setPriorityInput = document.getElementById("setPriority");
     var taskDeadlineInput = document.getElementById("taskDeadline");
     var taskDescriptionInput = document.getElementById("taskDescription");
 
 
-    //Send data with set name and content
+    //Send data with set name and conten//t
     function sendData(name, content) {
         localStorage.setItem(name, JSON.stringify( content ) );
     }
@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function showForm(e) {
 
-        error.classList.add('invisible');
         nameInput.style.borderColor = '#4e9d5e';
         taskDeadlineInput.style.borderColor = '#4e9d5e';
         setPriorityInput.style.borderColor = '#4e9d5e';
@@ -220,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         event.preventDefault();
 
-        error.classList.add('invisible');
+
         nameInput.style.borderColor = '#4e9d5e';
         taskDeadlineInput.style.borderColor = '#4e9d5e';
         setPriorityInput.style.borderColor = '#4e9d5e';
@@ -263,8 +262,6 @@ document.addEventListener("DOMContentLoaded", function() {
             tasks.push(newTask);
             sendData('toDoList', tasks);
             populateList();
-        } else {
-            error.classList.remove('invisible');
         }
     }
 

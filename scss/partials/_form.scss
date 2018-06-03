@@ -291,6 +291,7 @@
     .inputButtons {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       order: 5;
     }
     #confirmButton, #cancelButton {
