@@ -3,6 +3,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var tasks = [];
+    var filterState = 0;
+    var list = document.querySelector("ul");
 
     var nameInput = document.getElementById("taskName");
     var setPriorityInput = document.getElementById("setPriority");
@@ -70,11 +72,80 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     //Sorting functions
+
+    function sortByState(e) {
+        //If call come from button
+        if(e!= null){
+            if(e.target.classList[1] == "fa-check-circle"){
+                if(filterState == 1){
+                    console.log("Czyść");
+                    e.target.style.color = "#4e9d5e";
+                    filterState = 0;
+                    populateList();
+
+                } else {
+                    filterState = 1;
+                    console.log("Po zrobionych");
+                    e.target.style.color = "white";
+                    e.target.nextElementSibling.style.color = "#4e9d5e";
+                    sortByDone();
+                }
+
+            } else {
+                if(filterState == -1){
+                    console.log("Czyść");
+                    e.target.style.color = "#4e9d5e";
+                    filterState = 0;
+                    populateList();
+
+                } else {
+                    filterState = -1;
+                    console.log("Po niezrobionych");
+                    e.target.style.color = "white";
+                    e.target.previousElementSibling.style.color = "#4e9d5e";
+                    sortByUndone();
+                }
+            }
+        } else {
+            //Sorting after other sorting/refreshing
+            switch(filterState){
+                case 1:
+                    sortByDone();
+                    break;
+                case -1:
+                    sortByUndone();
+            }
+
+        }
+
+    }
+
+    function sortByDone(){
+        for(var i=1; i<list.children.length;i++){
+            list.children[i].style.display="block";
+            if(list.children[i].classList[1]!=='done'){
+                list.children[i].style.display="none";
+            }
+        }
+    }
+
+    function sortByUndone(){
+        for(var i=1; i<list.children.length;i++){
+            list.children[i].style.display="block";
+            if(list.children[i].classList[1]==='done'){
+                list.children[i].style.display="none";
+            }
+        }
+    }
+
+
+
     function sortFromHighestPriority(){
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromLowestPriority(){
@@ -82,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return  a.priority - b.priority;
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromOldest() {
@@ -89,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return new Date(a.date) - new Date(b.date);
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromFurthest() {
@@ -96,35 +169,11 @@ document.addEventListener("DOMContentLoaded", function() {
             return  new Date(b.date) - new Date(a.date);
         });
         populateList();
+        sortByState(null);
     }
 
-    function sortByDone(){
-        let items = tasks;
-        let doneArray = [];
-        tasks.forEach(function (item) {
-            if(item.done){
-                doneArray.push(item);
-            }
-        });
 
-        tasks = doneArray;
-        populateList();
-        tasks = items;
-    }
 
-    function sortByUndone(){
-        let items = tasks;
-        let undoneArray = [];
-        tasks.forEach(function (item) {
-            if(!item.done){
-                undoneArray.push(item);
-            }
-        });
-
-        tasks = undoneArray;
-        populateList();
-        tasks = items;
-    }
 
     //Functions for add task and filter buttons
 
@@ -206,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Create new tasks
 
-    var list = document.querySelector("ul");
+
     var confirmButton = document.getElementById("confirmButton");
 
     function addNewTask(event) {
@@ -426,8 +475,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var doneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-check-circle');
     var undoneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-times-circle');
 
-    doneButton.addEventListener('click', sortByDone);
-    undoneButton.addEventListener('click', sortByUndone);
+    doneButton.addEventListener('click', sortByState);
+    undoneButton.addEventListener('click', sortByState);
 
     var addTaskButton = document.getElementById("addTask");
     var toggleFiltersButton = document.getElementsByClassName("toggleFilters")[0];
