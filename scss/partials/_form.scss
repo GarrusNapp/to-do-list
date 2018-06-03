@@ -53,6 +53,16 @@
     justify-content: space-around;
     height: 16vh;
     margin-top: 5vh;
+    @media (max-width: 382px) {
+      //additional wraping for smaller mobiles
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+      .formLabel1, .formLabel2 {
+        height: auto;
+        width: auto;
+      }
+    }
   }
   .taskNameLabel {
     //border: 1px solid white;
