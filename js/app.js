@@ -3,8 +3,16 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var tasks = [];
+    var filterState = 0;
+    var list = document.querySelector("ul");
 
-    //Send data with set name and content
+    var nameInput = document.getElementById("taskName");
+    var setPriorityInput = document.getElementById("setPriority");
+    var taskDeadlineInput = document.getElementById("taskDeadline");
+    var taskDescriptionInput = document.getElementById("taskDescription");
+
+
+    //Send data with set name and conten//t
     function sendData(name, content) {
         localStorage.setItem(name, JSON.stringify( content ) );
     }
@@ -23,6 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
         dateArray.push(dateDay, dateMonth, dateYear);
         return dateArray.join('.');
     }
+
+    //Function which validates if returned data is ok
+    function validationOfData(data){
+        if(data ===''){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     tasks = downloadData('toDoList');
 
@@ -54,11 +72,80 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     //Sorting functions
+
+    function sortByState(e) {
+        //If call come from button
+        if(e!= null){
+            if(e.target.classList[1] == "fa-check-circle"){
+                if(filterState == 1){
+                    console.log("Czyść");
+                    e.target.style.color = "#4e9d5e";
+                    filterState = 0;
+                    populateList();
+
+                } else {
+                    filterState = 1;
+                    console.log("Po zrobionych");
+                    e.target.style.color = "white";
+                    e.target.nextElementSibling.style.color = "#4e9d5e";
+                    sortByDone();
+                }
+
+            } else {
+                if(filterState == -1){
+                    console.log("Czyść");
+                    e.target.style.color = "#4e9d5e";
+                    filterState = 0;
+                    populateList();
+
+                } else {
+                    filterState = -1;
+                    console.log("Po niezrobionych");
+                    e.target.style.color = "white";
+                    e.target.previousElementSibling.style.color = "#4e9d5e";
+                    sortByUndone();
+                }
+            }
+        } else {
+            //Sorting after other sorting/refreshing
+            switch(filterState){
+                case 1:
+                    sortByDone();
+                    break;
+                case -1:
+                    sortByUndone();
+            }
+
+        }
+
+    }
+
+    function sortByDone(){
+        for(var i=1; i<list.children.length;i++){
+            list.children[i].style.display="block";
+            if(list.children[i].classList[1]!=='done'){
+                list.children[i].style.display="none";
+            }
+        }
+    }
+
+    function sortByUndone(){
+        for(var i=1; i<list.children.length;i++){
+            list.children[i].style.display="block";
+            if(list.children[i].classList[1]==='done'){
+                list.children[i].style.display="none";
+            }
+        }
+    }
+
+
+
     function sortFromHighestPriority(){
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromLowestPriority(){
@@ -66,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return  a.priority - b.priority;
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromOldest() {
@@ -73,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return new Date(a.date) - new Date(b.date);
         });
         populateList();
+        sortByState(null);
     }
 
     function sortFromFurthest() {
@@ -80,39 +169,21 @@ document.addEventListener("DOMContentLoaded", function() {
             return  new Date(b.date) - new Date(a.date);
         });
         populateList();
+        sortByState(null);
     }
 
-    function sortByDone(){
-        let items = tasks;
-        let doneArray = [];
-        tasks.forEach(function (item) {
-            if(item.done){
-                doneArray.push(item);
-            }
-        });
 
-        tasks = doneArray;
-        populateList();
-        tasks = items;
-    }
 
-    function sortByUndone(){
-        let items = tasks;
-        let undoneArray = [];
-        tasks.forEach(function (item) {
-            if(!item.done){
-                undoneArray.push(item);
-            }
-        });
-
-        tasks = undoneArray;
-        populateList();
-        tasks = items;
-    }
 
     //Functions for add task and filter buttons
 
     function showForm(e) {
+
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
             case 'invisibleForm':
@@ -184,36 +255,63 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Create new tasks
 
-    var list = document.querySelector("ul");
+
     var confirmButton = document.getElementById("confirmButton");
 
     function addNewTask(event) {
-        event.preventDefault();
 
         var nameInput = document.getElementById("taskName");
         var setPriorityInput = document.getElementById("setPriority");
         var taskDeadlineInput = document.getElementById("taskDeadline");
         var taskDescriptionInput = document.getElementById("taskDescription");
 
-        var newTask = {
-            id: Math.floor(Math.random() * 100000000000000),
-            title: nameInput.value,
-            date: taskDeadlineInput.value,
-            priority: setPriorityInput.value,
-            description: taskDescriptionInput.value,
-            done: false
-        };
 
-        nameInput.value = '';
-        setPriorityInput.value = 5;
-        taskDeadlineInput.value = '';
-        taskDescriptionInput.value = '';
+        event.preventDefault();
 
-        showForm(event); //animacja
-        tasks.push(newTask);
-        sendData('toDoList', tasks);
-        populateList();
 
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
+        var everythingIsOk = true;
+        if(!validationOfData(nameInput.value)){
+            everythingIsOk=false;
+            nameInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(taskDeadlineInput.value)){
+            everythingIsOk=false;
+            taskDeadlineInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(setPriorityInput.value)){
+            everythingIsOk=false;
+            setPriorityInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(taskDescriptionInput.value)){
+            everythingIsOk=false;
+            taskDescriptionInput.style.borderColor = 'red';
+        }
+
+        if(everythingIsOk){
+            var newTask = {
+                id: Math.floor(Math.random() * 100000000000000),
+                title: nameInput.value,
+                date: taskDeadlineInput.value,
+                priority: setPriorityInput.value,
+                description: taskDescriptionInput.value,
+                done: false
+            };
+
+            nameInput.value = '';
+            taskDeadlineInput.value = '';
+            setPriorityInput.value = '5';
+            taskDescriptionInput.value = '';
+
+            showForm(event);
+            tasks.push(newTask);
+            sendData('toDoList', tasks);
+            populateList();
+        }
     }
 
     function createTask(obj) {
@@ -377,8 +475,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var doneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-check-circle');
     var undoneButton = document.querySelector('.filters>div:nth-of-type(3) .fa-times-circle');
 
-    doneButton.addEventListener('click', sortByDone);
-    undoneButton.addEventListener('click', sortByUndone);
+    doneButton.addEventListener('click', sortByState);
+    undoneButton.addEventListener('click', sortByState);
 
     var addTaskButton = document.getElementById("addTask");
     var toggleFiltersButton = document.getElementsByClassName("toggleFilters")[0];
