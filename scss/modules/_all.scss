@@ -1,5 +1,9 @@
 /* Add function, animations, placeholders, mixins and  general declarations*/
 
+* {
+  box-sizing: border-box;
+}
+
 body{
   background-color: $colorOfBackground;
   width: 100vw;
@@ -19,8 +23,18 @@ main{
   flex-direction: column;
 }
 
-.invisible{
-  display: none;
+.invisibleFilters{
+  @media (max-width: 768px) {
+    display: none;
+    visibility: hidden;
+    height: 0;
+  }
+}
+
+.invisibleForm{
+    display: none;
+    visibility: hidden;
+    height: 0;
 }
 
 

@@ -71,42 +71,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Sorting functions
     function sortFromHighestPriority(){
-        console.log(tasks);
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromLowestPriority(){
-        console.log(tasks);
         tasks.sort(function (a,b) {
             return  a.priority - b.priority;
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromOldest() {
-        console.log(tasks);
         tasks.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromFurthest() {
-        console.log(tasks);
         tasks.sort(function (a, b) {
             return  new Date(b.date) - new Date(a.date);
         });
-        console.log(tasks);
-
         populateList();
     }
 
@@ -141,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm(e) {
+
         error.classList.add('invisible');
         nameInput.style.borderColor = '#4e9d5e';
         taskDeadlineInput.style.borderColor = '#4e9d5e';
@@ -149,10 +138,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
-            case 'invisible':
-                document.getElementsByClassName("createTask")[0].classList.remove("invisible");
+            case 'invisibleForm':
+                document.getElementsByClassName("createTask")[0].classList.remove("invisibleForm");
                 document.getElementsByClassName("createTask")[0].classList.add("slideFromTop");
-
                 break;
             case 'slideToTop':
                 document.getElementsByClassName("createTask")[0].classList.remove("slideToTop");
@@ -169,8 +157,6 @@ document.addEventListener("DOMContentLoaded", function() {
     //Remove element from ul when task is deleted
     function remove(item){
         setTimeout(function (){
-
-                console.log(item.target.parentElement.parentElement);
                 item.target.parentElement.parentElement.parentElement.removeChild(item.target.parentElement.parentElement)}
             ,
             1500);
@@ -179,10 +165,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         switch( document.getElementsByClassName("filters")[0].classList[1]){
-            case 'invisible':
-                document.getElementsByClassName("filters")[0].classList.remove("invisible");
+            case 'invisibleFilters':
+                document.getElementsByClassName("filters")[0].classList.remove("invisibleFilters");
                 document.getElementsByClassName("filters")[0].classList.add("slideFromRight");
-
                 break;
             case 'slideToRight':
                 document.getElementsByClassName("filters")[0].classList.remove("slideToRight");
@@ -232,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var taskDeadlineInput = document.getElementById("taskDeadline");
         var taskDescriptionInput = document.getElementById("taskDescription");
 
+
         event.preventDefault();
 
         error.classList.add('invisible');
@@ -280,8 +266,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             error.classList.remove('invisible');
         }
-
-
     }
 
     function createTask(obj) {
@@ -374,8 +358,8 @@ document.addEventListener("DOMContentLoaded", function() {
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             if (tasks[taskIndex].done === false) { //toggles done boolean in tasks array
                 tasks[taskIndex].done = true;
-            } else if (tasks[taskIndex].done === false) {
-                tasks[taskIndex].done = true;
+            } else if (tasks[taskIndex].done === true) {
+                tasks[taskIndex].done = false;
             }
         }
 
@@ -397,7 +381,8 @@ document.addEventListener("DOMContentLoaded", function() {
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             tasks.splice(taskIndex,1); //removes the element from tasks array
 
-            event.target.parentElement.parentElement.classList.add('slideToTop'); // Animation before delete form ul
+            event.target.parentElement.parentElement.classList.add('slideTask'); // Animation before delete form ul
+
             remove(event)
 
         }
@@ -415,8 +400,8 @@ document.addEventListener("DOMContentLoaded", function() {
         var listOfTasks = document.querySelectorAll('.task');
         for (var task of listOfTasks) {
             task.parentElement.removeChild(task);
-
         }
+
         tasks.forEach(function (task) {
             createTask(task);
         });
@@ -454,7 +439,6 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleFiltersButton.addEventListener('click', toggleFilters);
 
     var backButton = document.querySelector('.backButton');
-    console.log(backButton);
     backButton.addEventListener('click', showForm);
 
     var cancelButton = document.getElementById('cancelButton');
