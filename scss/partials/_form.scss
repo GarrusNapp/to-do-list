@@ -1,15 +1,14 @@
 #form {
-  width: 100%;
+  position: absolute;
   top: 0;
+  width: 100%;
   background-color: #23342d;
   color: #fff;
   text-align: center;
   font-size: 1.6rem;
   letter-spacing: 1px;
   z-index: 4;
-  position: absolute;
   padding-top: 5%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,7 +93,6 @@
     font-weight: bold;
     letter-spacing: 1px;
     #setPriority {
-      margin-top: 4%;
       height: 100%;
       width: 100%;
       color: #fff;
@@ -124,7 +122,6 @@
 
     height: 100%;
     width: 100%;
-    margin-top: 4%;
     color: #fff;
     background-color: #23342d;
     border: 1px solid #4e9d5e;
