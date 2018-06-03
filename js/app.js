@@ -4,7 +4,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var tasks = [];
 
-    //Send data with set name and content
+    var nameInput = document.getElementById("taskName");
+    var setPriorityInput = document.getElementById("setPriority");
+    var taskDeadlineInput = document.getElementById("taskDeadline");
+    var taskDescriptionInput = document.getElementById("taskDescription");
+
+
+    //Send data with set name and conten//t
     function sendData(name, content) {
         localStorage.setItem(name, JSON.stringify( content ) );
     }
@@ -23,6 +29,16 @@ document.addEventListener("DOMContentLoaded", function() {
         dateArray.push(dateDay, dateMonth, dateYear);
         return dateArray.join('.');
     }
+
+    //Function which validates if returned data is ok
+    function validationOfData(data){
+        if(data ===''){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     tasks = downloadData('toDoList');
 
@@ -113,6 +129,12 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm(e) {
+
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
             case 'invisibleForm':
@@ -188,32 +210,59 @@ document.addEventListener("DOMContentLoaded", function() {
     var confirmButton = document.getElementById("confirmButton");
 
     function addNewTask(event) {
-        event.preventDefault();
 
         var nameInput = document.getElementById("taskName");
         var setPriorityInput = document.getElementById("setPriority");
         var taskDeadlineInput = document.getElementById("taskDeadline");
         var taskDescriptionInput = document.getElementById("taskDescription");
 
-        var newTask = {
-            id: Math.floor(Math.random() * 100000000000000),
-            title: nameInput.value,
-            date: taskDeadlineInput.value,
-            priority: setPriorityInput.value,
-            description: taskDescriptionInput.value,
-            done: false
-        };
 
-        nameInput.value = '';
-        setPriorityInput.value = 5;
-        taskDeadlineInput.value = '';
-        taskDescriptionInput.value = '';
+        event.preventDefault();
 
-        showForm(event); //animacja
-        tasks.push(newTask);
-        sendData('toDoList', tasks);
-        populateList();
 
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
+        var everythingIsOk = true;
+        if(!validationOfData(nameInput.value)){
+            everythingIsOk=false;
+            nameInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(taskDeadlineInput.value)){
+            everythingIsOk=false;
+            taskDeadlineInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(setPriorityInput.value)){
+            everythingIsOk=false;
+            setPriorityInput.style.borderColor = 'red';
+        }
+        if(!validationOfData(taskDescriptionInput.value)){
+            everythingIsOk=false;
+            taskDescriptionInput.style.borderColor = 'red';
+        }
+
+        if(everythingIsOk){
+            var newTask = {
+                id: Math.floor(Math.random() * 100000000000000),
+                title: nameInput.value,
+                date: taskDeadlineInput.value,
+                priority: setPriorityInput.value,
+                description: taskDescriptionInput.value,
+                done: false
+            };
+
+            nameInput.value = '';
+            taskDeadlineInput.value = '';
+            setPriorityInput.value = '5';
+            taskDescriptionInput.value = '';
+
+            showForm(event);
+            tasks.push(newTask);
+            sendData('toDoList', tasks);
+            populateList();
+        }
     }
 
     function createTask(obj) {
