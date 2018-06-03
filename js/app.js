@@ -3,6 +3,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var tasks = [];
+    var error = document.getElementById("error");
+    var nameInput = document.getElementById("taskName");
+    var setPriorityInput = document.getElementById("setPriority");
+    var taskDeadlineInput = document.getElementById("taskDeadline");
+    var taskDescriptionInput = document.getElementById("taskDescription");
+
 
     //Send data with set name and content
     function sendData(name, content) {
@@ -135,7 +141,12 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm(e) {
-        console.log("jestem");
+        error.classList.add('invisible');
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
             case 'invisible':
@@ -215,30 +226,37 @@ document.addEventListener("DOMContentLoaded", function() {
     var confirmButton = document.getElementById("confirmButton");
 
     function addNewTask(event) {
-        event.preventDefault();
-
-        var everythingIsOk = true;
 
         var nameInput = document.getElementById("taskName");
         var setPriorityInput = document.getElementById("setPriority");
         var taskDeadlineInput = document.getElementById("taskDeadline");
         var taskDescriptionInput = document.getElementById("taskDescription");
 
+        event.preventDefault();
 
+        error.classList.add('invisible');
+        nameInput.style.borderColor = '#4e9d5e';
+        taskDeadlineInput.style.borderColor = '#4e9d5e';
+        setPriorityInput.style.borderColor = '#4e9d5e';
+        taskDescriptionInput.style.borderColor = '#4e9d5e';
+
+        var everythingIsOk = true;
         if(!validationOfData(nameInput.value)){
             everythingIsOk=false;
+            nameInput.style.borderColor = 'red';
         }
         if(!validationOfData(taskDeadlineInput.value)){
             everythingIsOk=false;
+            taskDeadlineInput.style.borderColor = 'red';
         }
         if(!validationOfData(setPriorityInput.value)){
             everythingIsOk=false;
+            setPriorityInput.style.borderColor = 'red';
         }
         if(!validationOfData(taskDescriptionInput.value)){
             everythingIsOk=false;
+            taskDescriptionInput.style.borderColor = 'red';
         }
-
-
 
         if(everythingIsOk){
             var newTask = {
@@ -249,12 +267,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 description: taskDescriptionInput.value,
                 done: false
             };
+
+            nameInput.value = '';
+            taskDeadlineInput.value = '';
+            setPriorityInput.value = '5';
+            taskDescriptionInput.value = '';
+
             showForm(event);
             tasks.push(newTask);
             sendData('toDoList', tasks);
             populateList();
         } else {
-
+            error.classList.remove('invisible');
         }
 
 
