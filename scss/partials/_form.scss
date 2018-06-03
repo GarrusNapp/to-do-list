@@ -1,16 +1,14 @@
 #form {
-  width: 100%;
+  position: absolute;
   top: 0;
-  height: 100%;
+  width: 100%;
   background-color: #23342d;
   color: #fff;
   text-align: center;
   font-size: 1.6rem;
   letter-spacing: 1px;
   z-index: 4;
-  position: absolute;
   padding-top: 5%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +27,6 @@
     width: 40vw;
   }
   #taskName {
-    width: 50%;
     margin-top: 3%;
     font-size: 0.9rem;
     border-style: hidden;
@@ -46,6 +43,10 @@
 
     }
   }
+  .desktopColumn {
+    width: 100%;
+  }
+
   .inputFormRow {
     display: flex;
     flex-direction: row;
@@ -53,6 +54,16 @@
     justify-content: space-around;
     height: 16vh;
     margin-top: 5vh;
+    @media (max-width: 382px) {
+      //additional wraping for smaller mobiles
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+      .formLabel1, .formLabel2 {
+        height: auto;
+        width: auto;
+      }
+    }
   }
   .taskNameLabel {
     //border: 1px solid white;
@@ -82,7 +93,6 @@
     font-weight: bold;
     letter-spacing: 1px;
     #setPriority {
-      margin-top: 4%;
       height: 100%;
       width: 100%;
       color: #fff;
@@ -112,7 +122,6 @@
 
     height: 100%;
     width: 100%;
-    margin-top: 4%;
     color: #fff;
     background-color: #23342d;
     border: 1px solid #4e9d5e;
@@ -166,7 +175,7 @@
     text-align: center;
     font-size: 1.2rem;
     height: 8vh;
-    width: 50vh;
+    width: 100%;
     margin-top: 5%;
     color: #fff;
     border-style: hidden;
@@ -180,7 +189,6 @@
   }
 
   @media (min-width: 768px) {
-    height: 80vh;
     #taskDescription {
       &::placeholder{
         line-height: 20vh;
@@ -191,22 +199,21 @@
     height: 45vh;
     position: static;
     overflow-y: hidden;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     //align-content: space-around;
     ////align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
     //justify-items: center;
     padding: 0;
     border-radius: 10px;
 
-    .formTitle, div:first-of-type{
+    .formTitle, .backButton{
       display: none;
       order: 1;
 
     }
     .taskNameLabel {
-      width: 40%;
       height: 33%;
       margin: 0;
     }
@@ -220,10 +227,17 @@
       }
 
     }
+    .desktopColumn {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     .inputFormRow {
       order: 1;
-      width: 40%;
       flex-direction: column;
       align-items: center;
       height: 66%;
@@ -276,7 +290,6 @@
       order: 3;
       font-size: 1rem;
       margin-top: 1.5%;
-      width: 75%;
       height: 20vh;
       background-color: #23342d;
       border: 1px solid #4e9d5e;
@@ -291,7 +304,9 @@
     .inputButtons {
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
       order: 5;
     }
     #confirmButton, #cancelButton {
@@ -308,8 +323,6 @@
     #cancelButton{
       display: block;
       background-color: darkgrey;
-      margin-bottom: 2rem;
-      margin-left: 3rem;
       border-radius: 5px;
     }
   }
