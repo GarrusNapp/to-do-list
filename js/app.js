@@ -321,9 +321,10 @@ document.addEventListener("DOMContentLoaded", function() {
             var taskIndex = tasks.indexOf(correctTask); // finds the index of the element we search for
             if (tasks[taskIndex].done === false) { //toggles done boolean in tasks array
                 tasks[taskIndex].done = true;
-            } else if (tasks[taskIndex].done === false) {
-                tasks[taskIndex].done = true;
+            } else if (tasks[taskIndex].done === true) {
+                tasks[taskIndex].done = false;
             }
+            console.log(tasks);
         }
 
         function deleteTask(event) {
