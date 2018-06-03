@@ -3,14 +3,12 @@
 
   font-family: "Lato", sans-serif;
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
-  border-radius: 25px;
-  padding: 20px 5px;
-  background-color: rgba(0,0,0,0.8);
+  padding: 5px 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column-reverse;
+  align-items: flex-end;
   @media (min-width: 768px) {
       width: 100%;
       position: static;
@@ -19,6 +17,8 @@
       justify-content: space-between;
       border-radius: 0;
       background-color: black;
+      align-items: center;
+
   }
   @media (min-width: 1024px) {
     margin-top: 2rem;
@@ -33,12 +33,15 @@
 
   .filters {
     color:$colorPrimary;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 10px;
     display: flex;
-
     flex-direction: column;
     align-items: center;
     width: 110px;
+    padding-top: 10px;
     @media (min-width: 768px) {
+      padding: 0;
       width: 85vw;
       h3 {
         margin-right: auto;
@@ -78,8 +81,17 @@
 
   }
 
+  .controlBarButtons {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    @media (min-width: 767px) {
+      padding: 0;
+    }
+  }
+
   .toggleFilters{
-    padding: 15px 0;
+    padding: 0;
     @media (min-width: 768px) {
       display: none;
     }
