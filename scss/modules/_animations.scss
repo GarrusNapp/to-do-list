@@ -160,11 +160,11 @@
   0% {
     transform: translateX(0%);
     opacity: 1;
-    height: 25%;
+    max-height: 100vh;
   }
   100%{
     transform: translateX(-100%);
     opacity: 0;
-    height: 0;
+    max-height: 0;
   }
 }
