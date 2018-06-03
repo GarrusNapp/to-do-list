@@ -7,8 +7,8 @@
   right: 0;
   padding: 5px 5px;
   display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+  flex-direction: column-reverse;
+  align-items: flex-end;
   @media (min-width: 768px) {
       width: 100%;
       position: static;
@@ -17,6 +17,8 @@
       justify-content: space-between;
       border-radius: 0;
       background-color: black;
+      align-items: center;
+
   }
   @media (min-width: 1024px) {
     margin-top: 2rem;
@@ -33,15 +35,13 @@
     color:$colorPrimary;
     background-color: rgba(0,0,0,0.8);
     border-radius: 10px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
-    @media (max-width: 767px) {
-      order: 2;
-    }
+    width: 110px;
+    padding-top: 10px;
     @media (min-width: 768px) {
+      padding: 0;
       width: 85vw;
       h3 {
         margin-right: auto;
@@ -79,6 +79,15 @@
     font-size: 3rem;
     color: $colorPrimary;
 
+  }
+
+  .controlBarButtons {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    @media (min-width: 767px) {
+      padding: 0;
+    }
   }
 
   .toggleFilters{
