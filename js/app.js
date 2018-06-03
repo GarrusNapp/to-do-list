@@ -55,42 +55,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Sorting functions
     function sortFromHighestPriority(){
-        console.log(tasks);
         tasks.sort(function (a,b) {
             return  b.priority - a.priority;
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromLowestPriority(){
-        console.log(tasks);
         tasks.sort(function (a,b) {
             return  a.priority - b.priority;
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromOldest() {
-        console.log(tasks);
         tasks.sort(function (a, b) {
             return new Date(a.date) - new Date(b.date);
         });
-        console.log(tasks);
-
         populateList();
     }
 
     function sortFromFurthest() {
-        console.log(tasks);
         tasks.sort(function (a, b) {
             return  new Date(b.date) - new Date(a.date);
         });
-        console.log(tasks);
-
         populateList();
     }
 
@@ -125,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
     //Functions for add task and filter buttons
 
     function showForm(e) {
-        console.log("jestem");
         e.preventDefault();
         switch( document.getElementsByClassName("createTask")[0].classList[1]){
             case 'invisibleForm':
@@ -147,8 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
     //Remove element from ul when task is deleted
     function remove(item){
         setTimeout(function (){
-
-                console.log(item.target.parentElement.parentElement);
                 item.target.parentElement.parentElement.parentElement.removeChild(item.target.parentElement.parentElement)}
             ,
             1500);
@@ -324,7 +309,6 @@ document.addEventListener("DOMContentLoaded", function() {
             } else if (tasks[taskIndex].done === true) {
                 tasks[taskIndex].done = false;
             }
-            console.log(tasks);
         }
 
         function deleteTask(event) {
@@ -403,7 +387,6 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleFiltersButton.addEventListener('click', toggleFilters);
 
     var backButton = document.querySelector('.backButton');
-    console.log(backButton);
     backButton.addEventListener('click', showForm);
 
     var cancelButton = document.getElementById('cancelButton');
