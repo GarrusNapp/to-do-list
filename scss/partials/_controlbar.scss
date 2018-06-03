@@ -3,14 +3,12 @@
 
   font-family: "Lato", sans-serif;
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
-  border-radius: 25px;
-  padding: 20px 5px;
-  background-color: rgba(0,0,0,0.8);
+  padding: 5px 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row-reverse;
+  align-items: flex-start;
   @media (min-width: 768px) {
       width: 100%;
       position: static;
@@ -33,11 +31,16 @@
 
   .filters {
     color:$colorPrimary;
-    display: flex;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 10px;
 
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: 110px;
+    width: 100px;
+    @media (max-width: 767px) {
+      order: 2;
+    }
     @media (min-width: 768px) {
       width: 85vw;
       h3 {
@@ -79,7 +82,7 @@
   }
 
   .toggleFilters{
-    padding: 15px 0;
+    padding: 0;
     @media (min-width: 768px) {
       display: none;
     }

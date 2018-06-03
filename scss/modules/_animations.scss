@@ -120,11 +120,13 @@
     transform: translateX(100%);
     opacity: 0;
     height: 0;
+    visibility: hidden;
   }
   100%{
     transform: translateX(0%);
     height: 350px;
     opacity: 1;
+
   }
 }
 
@@ -138,6 +140,7 @@
     transform: translateX(100%);
     height: 0;
     opacity: 0;
+    visibility: hidden;
   }
 }
 
