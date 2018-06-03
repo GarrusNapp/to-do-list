@@ -24,6 +24,16 @@ document.addEventListener("DOMContentLoaded", function() {
         return dateArray.join('.');
     }
 
+    //Function which validates if returned data is ok
+    function validationOfData(data){
+        if(data ===''){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     tasks = downloadData('toDoList');
 
     //If tasks are empty we need to check if the user is new or old and deleted his tasks
@@ -207,23 +217,47 @@ document.addEventListener("DOMContentLoaded", function() {
     function addNewTask(event) {
         event.preventDefault();
 
+        var everythingIsOk = true;
+
         var nameInput = document.getElementById("taskName");
         var setPriorityInput = document.getElementById("setPriority");
         var taskDeadlineInput = document.getElementById("taskDeadline");
         var taskDescriptionInput = document.getElementById("taskDescription");
 
-        var newTask = {
-            id: Math.floor(Math.random() * 100000000000000),
-            title: nameInput.value,
-            date: taskDeadlineInput.value,
-            priority: setPriorityInput.value,
-            description: taskDescriptionInput.value,
-            done: false
-        };
-        showForm(event);
-        tasks.push(newTask);
-        sendData('toDoList', tasks);
-        populateList();
+
+        if(!validationOfData(nameInput.value)){
+            everythingIsOk=false;
+        }
+        if(!validationOfData(taskDeadlineInput.value)){
+            everythingIsOk=false;
+        }
+        if(!validationOfData(setPriorityInput.value)){
+            everythingIsOk=false;
+        }
+        if(!validationOfData(taskDescriptionInput.value)){
+            everythingIsOk=false;
+        }
+
+
+
+        if(everythingIsOk){
+            var newTask = {
+                id: Math.floor(Math.random() * 100000000000000),
+                title: nameInput.value,
+                date: taskDeadlineInput.value,
+                priority: setPriorityInput.value,
+                description: taskDescriptionInput.value,
+                done: false
+            };
+            showForm(event);
+            tasks.push(newTask);
+            sendData('toDoList', tasks);
+            populateList();
+        } else {
+
+        }
+
+
     }
 
     function createTask(obj) {
